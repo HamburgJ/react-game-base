@@ -1,33 +1,41 @@
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useGameState } from '../hooks/useGameState';
-import { StatsModal } from '../components/StatsModal';
-import { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShare } from '@fortawesome/free-solid-svg-icons';
+import { generateShareText, shareResults } from '../utils/shareUtils';
 import { getTodaysSeed } from '../utils/gameUtils';
 
 export const Play = () => {
   const { gameState, updateGameState } = useGameState();
-  const { todayCompleted, gamesPlayed, streak } = gameState;
-  const [showStats, setShowStats] = useState(false);
+  const { todayCompleted, gamesPlayed, streak, maxStreak, winRate } = gameState;
 
   // Get today's puzzle number
   const puzzleNumber = Math.floor((getTodaysSeed() % 1000000) / 100);
-
-  // Show stats modal if already completed
-  useEffect(() => {
-    if (todayCompleted) {
-      setShowStats(true);
-    }
-  }, [todayCompleted]);
 
   const handleComplete = () => {
     const newGamesPlayed = gamesPlayed + 1;
     updateGameState({
       todayCompleted: true,
       gamesPlayed: newGamesPlayed,
-      winRate: (newGamesPlayed - 1) / newGamesPlayed, // Simple win rate calculation
-      maxStreak: Math.max(gameState.maxStreak, streak)
+      winRate: (newGamesPlayed - 1) / newGamesPlayed,
+      maxStreak: Math.max(maxStreak, streak)
     });
-    setShowStats(true);
+  };
+
+  const handleShare = async () => {
+    const shareText = generateShareText({
+      title: 'Game Title',
+      dayNumber: puzzleNumber,
+      streak,
+      stats: {
+        gamesPlayed,
+        winRate,
+        currentStreak: streak,
+        maxStreak,
+      }
+    });
+
+    await shareResults(shareText);
   };
 
   return (
@@ -36,15 +44,45 @@ export const Play = () => {
         <Col xs={12} md={10} lg={8}>
           <Card className="game-container text-center">
             <Card.Body className="d-flex flex-column justify-content-center">
-              <div className="stats-display mb-4 d-flex justify-content-between align-items-center">
+              <div className="stats-display mb-4">
                 <span>Daily Puzzle #{puzzleNumber}</span>
-                <span>{streak} Day Streak</span>
               </div>
 
-              {/* TODO: Replace with your actual game content */}
-              <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center">
-                <p className="mb-4">This is a placeholder for your game content.</p>
-                {!todayCompleted && (
+              {todayCompleted ? (
+                <div className="completed-state">
+                  <h4 className="mb-4">Daily puzzle completed!</h4>
+                  
+                  <div className="stats-grid mb-4">
+                    <div className="stat-item">
+                      <div className="stat-value">{gamesPlayed}</div>
+                      <div className="stat-label">Played</div>
+                    </div>
+                    <div className="stat-item">
+                      <div className="stat-value">{Math.round(winRate * 100)}%</div>
+                      <div className="stat-label">Win Rate</div>
+                    </div>
+                    <div className="stat-item">
+                      <div className="stat-value">{streak}</div>
+                      <div className="stat-label">Streak</div>
+                    </div>
+                    <div className="stat-item">
+                      <div className="stat-value">{maxStreak}</div>
+                      <div className="stat-label">Best</div>
+                    </div>
+                  </div>
+
+                  <Button 
+                    variant="primary" 
+                    className="btn-game"
+                    onClick={handleShare}
+                  >
+                    <FontAwesomeIcon icon={faShare} className="me-2" />
+                    Share Result
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+                  <p className="mb-4">This is a placeholder for your game content.</p>
                   <Button
                     variant="primary"
                     size="lg"
@@ -53,14 +91,12 @@ export const Play = () => {
                   >
                     Complete Puzzle
                   </Button>
-                )}
-              </div>
+                </div>
+              )}
             </Card.Body>
           </Card>
         </Col>
       </Row>
-
-      <StatsModal show={showStats} onHide={() => setShowStats(false)} />
     </Container>
   );
 }; 

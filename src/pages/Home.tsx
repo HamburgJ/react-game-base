@@ -40,9 +40,8 @@ export const Home = () => {
             )}
           </div>
 
-          <Card className="game-container">
+          <Card className="home-card">
             <Card.Body>
-              {/* TODO: Replace with your game's introduction */}
               <p className="mb-4">
                 A new puzzle every day. Complete it to maintain your streak!
               </p>

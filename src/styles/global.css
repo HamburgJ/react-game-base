@@ -169,4 +169,21 @@ body {
   font-size: 0.875rem;
   color: var(--text-secondary);
   margin-top: 0.25rem;
+}
+
+/* Home card styles */
+.home-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-light);
+}
+
+[data-bs-theme='dark'] .home-card {
+  background-color: var(--bg-dark);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Completed state */
+.completed-state {
+  padding: 2rem 1rem;
 } 
