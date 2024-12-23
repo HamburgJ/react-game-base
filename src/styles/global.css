@@ -1,0 +1,36 @@
+/* Global styles */
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Game container styles */
+.game-container {
+  min-height: 70vh;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .game-container {
+    min-height: 80vh;
+  }
+}
+
+/* Theme transitions */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+  .card {
+    border-width: 2px;
+  }
+  
+  .btn {
+    border-width: 2px;
+  }
+} 
