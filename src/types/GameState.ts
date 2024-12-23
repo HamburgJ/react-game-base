@@ -7,21 +7,16 @@ export interface GameState {
   streak: number;
   settings: GameSettings;
   
-  // TODO: Add your game-specific state properties here
-  // Example:
-  // playerName?: string;
-  // inventory?: Item[];
-  // achievements?: Achievement[];
+  // Game completion tracking
+  gamesPlayed: number;
+  winRate: number;
+  maxStreak: number;
+  todayCompleted: boolean;
 }
 
 export interface GameSettings {
   // Built-in settings
   theme: 'light' | 'dark';
-
-  // TODO: Add your game-specific settings here
-  // Example:
-  // difficulty?: 'easy' | 'medium' | 'hard';
-  // customControls?: Record<string, string>;
 }
 
 export const DEFAULT_GAME_STATE: GameState = {
@@ -33,7 +28,10 @@ export const DEFAULT_GAME_STATE: GameState = {
   streak: 0,
   settings: {
     theme: 'light',
-    // TODO: Add defaults for your game-specific settings here
   },
-  // TODO: Add defaults for your game-specific state here
+  // Game completion defaults
+  gamesPlayed: 0,
+  winRate: 0,
+  maxStreak: 0,
+  todayCompleted: false,
 }; 

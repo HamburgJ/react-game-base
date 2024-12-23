@@ -1,158 +1,221 @@
 # React Game Base Template
 
-A template repository for creating and deploying browser-based games to GitHub Pages with automatic deployment, state persistence, and responsive design.
+A template repository for creating daily browser games like Wordle, Connections, or similar puzzle games. Features automatic deployment, state persistence, daily streaks, and responsive design.
 
 ## Features
 
-- React + TypeScript
-- Vite for fast development and building
-- GitHub Pages deployment ready
-- React Bootstrap for UI components
-- React Router DOM with hash routing
-- State management with localStorage persistence
-- Responsive design
-- Dark/Light theme support
-- Automatic deployment configuration
+- 🎮 Perfect for daily puzzle games
+- 🌙 Built-in dark/light theme
+- 📊 Daily streak tracking
+- 🔄 Automatic state persistence
+- 📱 Mobile-first responsive design
+- 🚀 One-click GitHub Pages deployment
+- 📈 Google Analytics 4 support
+- 🎨 Clean, modern UI with Bootstrap
+- 🔗 Social sharing with result grids
+- 📊 Stats comparison system
 
-## Getting Started
+## Quick Start
 
-### Prerequisites
+1. Click "Use this template" to create your repository
+2. Enable GitHub Pages:
+   - Go to repository Settings > Pages
+   - Under "Build and deployment", select "GitHub Actions" as the source
+3. Configure analytics and sharing:
+   - Copy `.env.example` to `.env`
+   - Add your Google Analytics 4 ID
+   - Add your game preview image at `/public/game-preview.png`
+4. Your game will be live at `https://yourusername.github.io/your-repo-name`
 
-- Node.js (v14 or higher)
-- npm (v6 or higher)
+## Customization
 
-### Installation
+Look for `TODO` comments in these files:
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/react-game-base.git
-cd react-game-base
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Build for production:
-```bash
-npm run build
-```
-
-## Project Structure
-
-```
-src/
-├── components/     # Reusable UI components
-├── pages/         # Page components
-├── hooks/         # Custom React hooks
-├── utils/         # Utility functions
-├── types/         # TypeScript type definitions
-└── styles/        # Global styles and themes
-```
-
-## Customization Guide
-
-### 1. Game Implementation
-
-The template provides several key files that need to be customized for your game:
-
-#### Required Changes
+### Required Changes
 1. `src/pages/Play.tsx`
-   - Replace the placeholder game area with your game implementation
-   - Customize game stats display (level, score, streak)
-   - Add game-specific controls and UI elements
+   - Replace placeholder with your game logic
+   - Customize game stats display
 
-2. `src/types/GameState.ts`
-   - Add game-specific state properties to `GameState` interface
-   - Add game-specific settings to `GameSettings` interface
-   - Set appropriate default values in `DEFAULT_GAME_STATE`
-
-3. `src/pages/Home.tsx`
+2. `src/pages/Home.tsx`
    - Update game title and introduction
-   - Customize the start game button
+   - Customize welcome message
 
-#### Optional Changes
-1. `src/pages/Settings.tsx`
+3. `src/types/GameState.ts`
+   - Add game-specific state properties
    - Add game-specific settings
-   - Customize existing settings behavior
 
-2. `src/pages/Info.tsx`
-   - Update game rules and features
-   - Add credits and acknowledgments
+### Optional Changes
+1. `public/game-icon.svg`
+   - Replace with your game icon
 
-3. `src/styles/global.css`
-   - Customize theme colors
+2. `src/styles/global.css`
+   - Customize colors and theme
    - Add game-specific styles
 
-4. `public/game-icon.svg`
-   - Replace with your game's icon
+3. `src/components/InfoModal.tsx`
+   - Update game instructions
+   - Add game features list
 
-### 2. State Management
+## Built-in Features
 
-The template provides built-in state management with the following features:
-- Persistent storage using localStorage
-- Theme switching
-- Sound/Music toggles
-- Progress tracking (level, score, streak)
-
-To add custom state:
-1. Update `GameState` interface in `types/GameState.ts`
-2. Use `useGameState` hook to access and modify state
-3. Add state update logic in your game components
-
-Example:
+### State Management
 ```typescript
 const { gameState, updateGameState } = useGameState();
 
-// Update specific state properties
+// Update game state
 updateGameState({
   score: newScore,
   currentLevel: nextLevel,
 });
 ```
 
-### 3. Theme Customization
+### Daily Streaks
+- Automatically tracks daily visits
+- Resets if player misses a day
+- Persists across browser sessions
 
-1. Light/Dark theme support is built-in
-2. Customize theme colors in `src/styles/global.css`
-3. Use Bootstrap's theme classes for consistent styling
-4. High contrast mode support included
+### Theme Support
+```typescript
+const { theme, toggleTheme } = useTheme();
+```
 
-### 4. Deployment
+### Result Sharing
+```typescript
+// Generate result grid (like Wordle's colored squares)
+const grid = [
+  ['🟩', '🟨', '⬛'],
+  ['🟩', '🟩', '🟩'],
+];
 
-The template is configured for automatic GitHub Pages deployment:
+// Share results with native share API or clipboard fallback
+const shareText = generateShareText({
+  title: 'My Game',
+  score: 100,
+  streak: 5,
+  grid: grid,
+  stats: gameStats
+});
+await shareResults(shareText);
+```
 
-1. Fork or create a new repository from this template
-2. Enable GitHub Pages in your repository settings:
-   - Go to Settings > Pages
-   - Set "Source" to "GitHub Actions"
-3. Push your changes to the main branch
-4. The GitHub Action will automatically:
-   - Build your project
-   - Configure the correct base URL
-   - Deploy to GitHub Pages
-   - Provide the deployment URL in the action output
+### Stats Comparison
+```typescript
+// Compare stats with friends
+const comparison = compareStats(myStats, friendStats);
+/* Output:
+📊 Stats Comparison:
 
-No manual configuration is needed for deployment paths - everything is handled automatically!
+           You  Friend
+Games:      12     24
+Win Rate:   75%    80%
+Streak:      5      7
+Best:       10     12
+*/
+```
 
-### 5. Performance Considerations
+### Analytics Integration
+1. Set up Google Analytics:
+   ```env
+   # .env
+   VITE_GA_ID=G-XXXXXXXXXX
+   ```
 
-1. Implement loading states for async operations
-2. Use React.lazy for code splitting if needed
-3. Optimize game assets and animations
-4. Consider using Web Workers for intensive computations
+2. Track custom events:
+   ```typescript
+   gtag('event', 'level_complete', {
+     level: currentLevel,
+     score: score
+   });
+   ```
+
+### Social Media Integration
+- Open Graph meta tags for rich previews
+- Twitter card support
+- Customizable share images
+- Automatic puzzle numbering
+
+## Game Development Tips
+
+### State Persistence
+All game state is automatically saved to localStorage. Common state properties:
+- `currentLevel`: Current game level/puzzle
+- `streak`: Daily visit streak
+- `lastPlayed`: Last played timestamp
+- `score`: Player's score
+- `highScores`: Array of high scores
+
+### Adding Custom Features
+
+1. **Daily Puzzles**
+```typescript
+const getTodaysPuzzle = () => {
+  const today = new Date();
+  const puzzleIndex = Math.floor(today.getTime() / (24 * 60 * 60 * 1000));
+  return puzzles[puzzleIndex % puzzles.length];
+};
+```
+
+2. **Progress Saving**
+```typescript
+updateGameState({
+  currentPuzzle: puzzleState,
+  attempts: attemptsLeft,
+  discovered: foundItems,
+});
+```
+
+3. **Statistics**
+```typescript
+updateGameState({
+  gamesPlayed: gameState.gamesPlayed + 1,
+  winStreak: won ? gameState.winStreak + 1 : 0,
+  bestStreak: Math.max(gameState.bestStreak, newStreak),
+});
+```
+
+### Common Game Patterns
+
+1. **Daily Reset**
+```typescript
+const isNewDay = () => {
+  const lastPlayed = new Date(gameState.lastPlayed);
+  const now = new Date();
+  return !isSameDay(lastPlayed, now);
+};
+```
+
+2. **Share Results**
+```typescript
+const shareResults = () => {
+  const text = generateShareText({
+    title: 'Game Title',
+    dayNumber: 123,
+    score: 10,
+    streak: 5,
+    grid: resultGrid
+  });
+  navigator.clipboard.writeText(text);
+};
+```
+
+3. **Timer/Countdown**
+```typescript
+const [timeLeft, setTimeLeft] = useState(60);
+useEffect(() => {
+  const timer = setInterval(() => {
+    setTimeLeft(t => Math.max(0, t - 1));
+  }, 1000);
+  return () => clearInterval(timer);
+}, []);
+```
 
 ## Common Issues
 
-1. **GitHub Pages 404**: Make sure GitHub Pages is enabled and set to deploy from GitHub Actions in your repository settings.
-2. **State Reset**: The reset functionality in settings will clear ALL game progress. Customize the reset behavior in `useGameState` if needed.
-3. **Mobile Support**: Test touch interactions thoroughly and adjust UI for small screens.
+1. **GitHub Pages 404**: Make sure GitHub Pages is enabled and set to deploy from GitHub Actions
+2. **State Reset**: The reset functionality clears ALL game progress
+3. **Mobile Testing**: Test touch interactions thoroughly
+4. **Analytics Not Working**: Verify your GA4 ID in `.env` file
+5. **Share Not Working**: Some browsers restrict clipboard access to HTTPS
 
 ## License
 
