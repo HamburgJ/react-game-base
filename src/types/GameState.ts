@@ -17,8 +17,6 @@ export interface GameState {
 export interface GameSettings {
   // Built-in settings
   theme: 'light' | 'dark';
-  soundEnabled: boolean;
-  musicEnabled: boolean;
 
   // TODO: Add your game-specific settings here
   // Example:
@@ -35,8 +33,6 @@ export const DEFAULT_GAME_STATE: GameState = {
   streak: 0,
   settings: {
     theme: 'light',
-    soundEnabled: true,
-    musicEnabled: true,
     // TODO: Add defaults for your game-specific settings here
   },
   // TODO: Add defaults for your game-specific state here

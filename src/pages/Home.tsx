@@ -4,36 +4,45 @@ import { useGameState } from '../hooks/useGameState';
 
 export const Home = () => {
   const { gameState } = useGameState();
-  const { lastPlayed } = gameState;
+  const { lastPlayed, streak } = gameState;
 
   return (
     <Container className="py-5">
-      <Row className="justify-content-center">
+      <Row className="justify-content-center text-center">
         <Col md={8} lg={6}>
-          <Card className="text-center">
+          <h1 className="game-title mb-4">Game Title</h1>
+          
+          {streak > 0 && (
+            <div className="stats-display mb-4">
+              Current Streak: {streak}
+            </div>
+          )}
+
+          <Card className="game-container">
             <Card.Body>
-              {/* TODO: Replace with your game title */}
-              <Card.Title className="mb-4">Welcome to Game Title</Card.Title>
               {/* TODO: Replace with your game's introduction */}
-              <Card.Text>
+              <p className="mb-4">
                 Your game introduction goes here. Explain what makes your game special
                 and how to play it.
-              </Card.Text>
+              </p>
+
               {lastPlayed && (
-                <Card.Text className="text-muted mb-3">
+                <p className="text-muted small mb-4">
                   Last played: {new Date(lastPlayed).toLocaleDateString()}
-                </Card.Text>
+                </p>
               )}
-              <Link to="/play" className="d-grid">
-                {/* TODO: Customize button text if needed */}
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="mb-3"
-                >
-                  Start Game
-                </Button>
-              </Link>
+
+              <div className="d-grid">
+                <Link to="/play" className="d-grid">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="btn-game"
+                  >
+                    Start Game
+                  </Button>
+                </Link>
+              </div>
             </Card.Body>
           </Card>
         </Col>

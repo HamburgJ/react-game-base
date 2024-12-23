@@ -1,38 +1,42 @@
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useGameState } from '../hooks/useGameState';
 
 export const Play = () => {
-  const { gameState } = useGameState();
-  const { currentLevel, score, streak } = gameState;
+  const { gameState, updateGameState } = useGameState();
+  const { currentLevel } = gameState;
+
+  const handleNextLevel = () => {
+    updateGameState({
+      currentLevel: currentLevel + 1,
+      streak: gameState.streak + 1,
+    });
+  };
 
   return (
     <Container fluid className="py-3">
-      <Row className="mb-3">
-        <Col>
-          {/* TODO: Customize game stats display. Add/remove stats as needed */}
-          <div className="d-flex justify-content-between align-items-center">
-            <div>Level: {currentLevel}</div>
-            <div>Score: {score}</div>
-            <div>Streak: {streak}</div>
-          </div>
-        </Col>
-      </Row>
-
       <Row className="justify-content-center">
         <Col xs={12} md={10} lg={8}>
-          <Card className="game-container">
-            <Card.Body>
-              {/* TODO: REQUIRED - Replace this with your game implementation
-                  Suggested steps:
-                  1. Create a new component for your game (e.g., GameBoard.tsx)
-                  2. Import and use it here
-                  3. Add game-specific state management
-                  4. Add game controls and event handlers
-                  5. Add game rendering logic
-              */}
-              <div className="text-center p-5">
-                <h2>Game Area</h2>
-                <p>Replace this with your game implementation</p>
+          <Card className="game-container text-center">
+            <Card.Body className="d-flex flex-column justify-content-center">
+              <div className="stats-display mb-4">
+                Level {currentLevel}
+              </div>
+              
+              {/* TODO: REQUIRED - Replace this with your game implementation */}
+              <div className="mb-4">
+                <h2>Sample Game</h2>
+                <p>Click the button to advance to the next level</p>
+              </div>
+
+              <div className="d-grid gap-2 col-md-6 mx-auto">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="btn-game"
+                  onClick={handleNextLevel}
+                >
+                  Complete Level
+                </Button>
               </div>
             </Card.Body>
           </Card>

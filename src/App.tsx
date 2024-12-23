@@ -6,8 +6,6 @@ import './styles/global.css';
 import { Navigation } from './components/Navigation';
 import { Home } from './pages/Home';
 import { Play } from './pages/Play';
-import { Settings } from './pages/Settings';
-import { Info } from './pages/Info';
 
 function App() {
   return (
@@ -18,8 +16,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/play" element={<Play />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/info" element={<Info />} />
           </Routes>
         </Container>
       </div>
