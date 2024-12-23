@@ -23,7 +23,7 @@ export const Navigation = () => {
             className="nav-link"
             aria-label="Toggle theme"
           >
-            <FontAwesomeIcon icon={theme === 'light' ? faMoon : faSun} />
+            <FontAwesomeIcon icon={theme === 'dark' ? faSun : faMoon} />
           </Button>
           <Button
             variant="link"

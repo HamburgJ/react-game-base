@@ -1,5 +1,5 @@
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { useGameState } from '../hooks/useGameState';
+import { useGameState } from '../context/GameStateContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShare } from '@fortawesome/free-solid-svg-icons';
 import { generateShareText, shareResults } from '../utils/shareUtils';
@@ -7,17 +7,19 @@ import { getTodaysSeed } from '../utils/gameUtils';
 
 export const Play = () => {
   const { gameState, updateGameState } = useGameState();
-  const { todayCompleted, gamesPlayed, streak, maxStreak, winRate } = gameState;
+  const { todayCompleted, gamesPlayed, streak, maxStreak, winRate, wins } = gameState;
 
   // Get today's puzzle number
   const puzzleNumber = Math.floor((getTodaysSeed() % 1000000) / 100);
 
   const handleComplete = () => {
     const newGamesPlayed = gamesPlayed + 1;
+    const newWins = wins + 1;
     updateGameState({
       todayCompleted: true,
       gamesPlayed: newGamesPlayed,
-      winRate: (newGamesPlayed - 1) / newGamesPlayed,
+      wins: newWins,
+      winRate: newWins / newGamesPlayed,
       maxStreak: Math.max(maxStreak, streak)
     });
   };
@@ -43,7 +45,7 @@ export const Play = () => {
       <Row className="justify-content-center">
         <Col xs={12} md={10} lg={8}>
           <Card className="game-container text-center">
-            <Card.Body className="d-flex flex-column justify-content-center">
+            <Card.Body>
               <div className="stats-display mb-4">
                 <span>Daily Puzzle #{puzzleNumber}</span>
               </div>
@@ -81,7 +83,8 @@ export const Play = () => {
                   </Button>
                 </div>
               ) : (
-                <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+                <div className="game-content">
+                  {/* TODO: Replace with your actual game content */}
                   <p className="mb-4">This is a placeholder for your game content.</p>
                   <Button
                     variant="primary"
