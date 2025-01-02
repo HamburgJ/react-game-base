@@ -2,6 +2,8 @@
 
 A template repository for creating daily browser games like Wordle, Connections, or similar puzzle games. Features automatic deployment, state persistence, daily streaks, and responsive design.
 
+## Play the [Live Demo](https://burgerfun.tech/four-nines/) of Four Nines, a daily puzzle game created from this template
+
 ## Features
 
 - 🎮 Perfect for daily puzzle games
