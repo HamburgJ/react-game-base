@@ -5,101 +5,136 @@ import Layout from '../components/Layout';
 const Home: React.FC = () => {
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="container">
-          <div style={{ marginBottom: '1rem', display: 'inline-block', padding: '0.5rem 1rem', background: 'var(--bg-surface)', borderRadius: 'var(--radius-full)', border: '1px solid var(--border-color)', fontSize: '0.875rem', fontWeight: 500, color: 'var(--color-primary)' }}>
-            v1.0 is now available 🚀
-          </div>
-          <h1>
-            Build your own <span className="text-gradient">Wordle</span> for <br/>
-            students, friends, or customers.
-          </h1>
-          <p className="hero-subtitle">
-            The ultimate React + TypeScript template for daily puzzle games.
-            Includes streak tracking, social sharing, analytics, and dark mode out of the box.
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-            <a href="https://github.com/joshhamburger/react-game-base" className="btn btn-primary">
-              Clone Template
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '8px' }}><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-            </a>
-            <Link to="/demos" className="btn btn-secondary">Play Demos</Link>
+      <div className="container">
+        {/* Marquee */}
+        <div style={{ 
+          background: 'var(--fg-ink)', 
+          color: 'var(--accent-tertiary)', 
+          padding: 'var(--space-2)',
+          fontFamily: 'var(--font-display)',
+          textTransform: 'uppercase',
+          fontWeight: 'bold',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          marginBottom: 'var(--space-8)',
+          borderRadius: 'var(--border-radius-sm)',
+          border: 'var(--border-width) solid var(--fg-ink)'
+        }}>
+          <div style={{ animation: 'marquee 20s linear infinite' }}>
+            PRESS START // INSERT COIN // HIGH SCORE: 999,999 // LEVEL 1 COMPLETE // NEW GAME UNLOCKED // PRESS START // INSERT COIN // HIGH SCORE: 999,999 // LEVEL 1 COMPLETE // NEW GAME UNLOCKED
           </div>
         </div>
-      </section>
 
-      {/* Features Grid */}
-      <section style={{ padding: '4rem 0', background: 'var(--bg-surface)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-            <h2>Everything you need to launch</h2>
-            <p style={{ color: 'var(--text-muted)' }}>Focus on your game logic. We handled the boring stuff.</p>
-          </div>
+        {/* Hero Grid */}
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+          gap: 'var(--space-4)',
+          marginBottom: 'var(--space-8)'
+        }}>
           
-          <div className="grid grid-cols-2">
-            <div className="feature-card">
-              <span className="feature-icon">🗓️</span>
-              <h3>Daily Seeding System</h3>
-              <p style={{ color: 'var(--text-muted)' }}>
-                Every player gets the same puzzle each day. Built-in PRNG system ensures consistent cross-device experience without a database.
-              </p>
-            </div>
-            <div className="feature-card">
-              <span className="feature-icon">🔥</span>
-              <h3>Streaks & Statistics</h3>
-              <p style={{ color: 'var(--text-muted)' }}>
-                Local storage based persistence for win streaks, played games, and win percentage. Visualization component included.
-              </p>
-            </div>
-            <div className="feature-card">
-              <span className="feature-icon">🎨</span>
-              <h3>Theming & Dark Mode</h3>
-              <p style={{ color: 'var(--text-muted)' }}>
-                Fully responsive with automatic dark mode support. easy-to-configure CSS variables for your brand's color scheme.
-              </p>
-            </div>
-            <div className="feature-card">
-              <span className="feature-icon">🚀</span>
-              <h3>Zero-Config Deployment</h3>
-              <p style={{ color: 'var(--text-muted)' }}>
-                Includes GitHub Actions workflows to build and deploy your game to GitHub Pages automatically on push.
-              </p>
+          {/* Main Hero Card */}
+          <div className="brutalist-card" style={{ gridColumn: 'span 2', minHeight: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'var(--accent-secondary)', position: 'relative' }}>
+             <div style={{ 
+               position: 'absolute', 
+               top: '-10px', 
+               right: '-10px', 
+               background: 'var(--accent-tertiary)', 
+               padding: 'var(--space-2) var(--space-4)', 
+               border: 'var(--border-width) solid var(--fg-ink)',
+               transform: 'rotate(2deg)',
+               fontWeight: 'bold',
+               boxShadow: '4px 4px 0 var(--fg-ink)'
+             }}>
+               V1.0 RELEASED!
+             </div>
+             <h1 style={{ fontSize: 'var(--text-3xl)', textShadow: '4px 4px 0 var(--bg-surface)' }}>
+               BUILD YOUR<br/>OWN ARCADE
+             </h1>
+             <p style={{ fontFamily: 'var(--font-display)', fontWeight: 'bold', background: 'var(--bg-surface)', display: 'inline-block', padding: 'var(--space-2)', border: '2px solid var(--fg-ink)' }}>
+               React 19 + Vite + TypeScript Template
+             </p>
+             <div style={{ marginTop: 'var(--space-8)', display: 'flex', gap: 'var(--space-4)' }}>
+               <a href="https://github.com/joshhamburger/react-game-base" className="brutalist-btn">
+                 DOWNLOAD SOURCE
+               </a>
+               <Link to="/demos" className="brutalist-btn secondary">
+                 INSERT COIN (DEMOS)
+               </Link>
+             </div>
+          </div>
+
+          {/* Stats / Info Card */}
+          <div className="brutalist-card" style={{ background: 'var(--bg-surface)', transform: 'rotate(-1deg)' }}>
+            <h3 style={{ borderBottom: '2px solid var(--fg-ink)', paddingBottom: 'var(--space-2)', marginBottom: 'var(--space-4)' }}>SYSTEM SPECS</h3>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontFamily: 'var(--font-display)', fontSize: 'var(--text-sm)' }}>
+              <li style={{ marginBottom: 'var(--space-2)', display: 'flex', justifyContent: 'space-between' }}>
+                <span>Wait_Time:</span> <span style={{ color: 'var(--status-success)', fontWeight: 'bold' }}>0ms</span>
+              </li>
+              <li style={{ marginBottom: 'var(--space-2)', display: 'flex', justifyContent: 'space-between' }}>
+                <span>Engine:</span> <span>Vite 6.0</span>
+              </li>
+              <li style={{ marginBottom: 'var(--space-2)', display: 'flex', justifyContent: 'space-between' }}>
+                <span>Logic:</span> <span>TypeScript</span>
+              </li>
+              <li style={{ marginBottom: 'var(--space-2)', display: 'flex', justifyContent: 'space-between' }}>
+                <span>Cost:</span> <span style={{ background: 'var(--accent-primary)', color: 'white', padding: '0 4px' }}>FREE</span>
+              </li>
+            </ul>
+            <div style={{ marginTop: 'var(--space-4)', padding: 'var(--space-4)', background: '#f0f0f0', border: '2px dashed var(--fg-dim)', textAlign: 'center' }}>
+              <p style={{ margin: 0, fontWeight: 'bold' }}>NO DATABASE RQRD</p>
+              <p style={{ margin: 0, fontSize: '0.8rem' }}>Uses LocalStorage</p>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* Demo Teaser */}
-      <section style={{ padding: '6rem 0' }}>
-        <div className="container" style={{ textAlign: 'center' }}>
-           <h2>See it in action</h2>
-           <p className="hero-subtitle">We built 3 distinct games to prove the template's flexibility.</p>
-           
-           <div className="grid grid-cols-3" style={{ marginTop: '3rem' }}>
-             <Link to="/demos/worduel" className="feature-card" style={{ textDecoration: 'none', color: 'inherit', textAlign: 'left' }}>
-               <div style={{ height: '140px', background: '#e0f2fe', borderRadius: 'var(--radius-md)', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem' }}>📝</div>
-               <h3>Worduel</h3>
-               <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Classic 5-letter word guessing game with keyboard input.</p>
-               <span style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '0.9rem', marginTop: 'auto', display: 'block', paddingTop: '1rem' }}>Play Now →</span>
-             </Link>
-             
-             <Link to="/demos/numbrella" className="feature-card" style={{ textDecoration: 'none', color: 'inherit', textAlign: 'left' }}>
-               <div style={{ height: '140px', background: '#f5d0fe', borderRadius: 'var(--radius-md)', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem' }}>🔢</div>
-               <h3>Numbrella</h3>
-               <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Reach the target number using basic arithmetic operations.</p>
-               <span style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '0.9rem', marginTop: 'auto', display: 'block', paddingTop: '1rem' }}>Play Now →</span>
-             </Link>
-             
-             <Link to="/demos/chromatic" className="feature-card" style={{ textDecoration: 'none', color: 'inherit', textAlign: 'left' }}>
-               <div style={{ height: '140px', background: '#fef08a', borderRadius: 'var(--radius-md)', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem' }}>🎨</div>
-               <h3>Chromatic</h3>
-               <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>Mix RGB sliders to match the daily target color.</p>
-               <span style={{ color: 'var(--color-primary)', fontWeight: 600, fontSize: '0.9rem', marginTop: 'auto', display: 'block', paddingTop: '1rem' }}>Play Now →</span>
-             </Link>
-           </div>
+        {/* Features Staggered Grid */}
+        <div style={{ marginBottom: 'var(--space-8)' }}>
+          <h2 style={{ textAlign: 'center', marginBottom: 'var(--space-8)', fontSize: 'var(--text-2xl)' }}>
+            <span style={{ background: 'var(--accent-quaternary)', color: 'white', padding: '0 var(--space-2)' }}>POWER-UPS</span> INCLUDED
+          </h2>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-8)' }}>
+            
+            {/* Feature 1 */}
+            <div className="brutalist-card" style={{ transform: 'rotate(1deg)' }}>
+              <div style={{ fontSize: '3rem', marginBottom: 'var(--space-2)' }}>🗓️</div>
+              <h3>Daily Seeding</h3>
+              <p>Everybody gets the same puzzle. Synchronized across the metaverse via PRNG algorithms.</p>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="brutalist-card" style={{ transform: 'rotate(-1deg)', marginTop: 'var(--space-4)' }}>
+              <div style={{ fontSize: '3rem', marginBottom: 'var(--space-2)' }}>🔥</div>
+              <h3>Streak Tracking</h3>
+              <p>Dopamine hits included. Tracks wins, losses, and streaks automatically in browser storage.</p>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="brutalist-card" style={{ transform: 'rotate(1.5deg)' }}>
+              <div style={{ fontSize: '3rem', marginBottom: 'var(--space-2)' }}>🚀</div>
+              <h3>Turbo Deploy</h3>
+              <p>Push to main -> GitHub Actions -> Live. Zero config deployment pipeline ready to go.</p>
+            </div>
+          
+          </div>
         </div>
-      </section>
+
+        {/* CTA */}
+        <div style={{ textAlign: 'center', padding: 'var(--space-8) 0', borderTop: 'var(--border-width) dashed var(--fg-dim)' }}>
+            <h2 style={{ marginBottom: 'var(--space-4)' }}>READY TO PLAY?</h2>
+            <Link to="/demos" className="brutalist-btn" style={{ fontSize: '1.5rem', padding: 'var(--space-4) var(--space-8)', transform: 'rotate(-2deg)' }}>
+              START GAME →
+            </Link>
+        </div>
+
+      </div>
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(100%); }
+          100% { transform: translateX(-100%); }
+        }
+      `}</style>
     </Layout>
   );
 };
