@@ -7,46 +7,45 @@ const Navbar: React.FC = () => {
 
   return (
     <nav style={{
-      borderBottom: '1px solid var(--border-color)',
-      backgroundColor: 'rgba(255, 255, 255, 0.8)',
-      backdropFilter: 'blur(12px)',
+      borderBottom: 'var(--border-width) solid var(--fg-ink)',
+      backgroundColor: 'var(--bg-surface)',
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      padding: '0.75rem 0',
-      marginBottom: '2rem'
+      padding: 'var(--space-3) 0',
+      marginBottom: 'var(--space-8)'
     }}>
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Link to="/" style={{ 
           fontFamily: 'var(--font-display)', 
-          fontSize: '1.125rem', 
-          fontWeight: 700,
+          fontSize: '1.25rem', 
+          fontWeight: 800,
+          textTransform: 'uppercase', 
           color: 'var(--fg-ink)',
           display: 'flex',
           alignItems: 'center',
-          gap: '0.5rem',
+          gap: 'var(--space-2)',
           textDecoration: 'none'
         }}>
-          <div style={{ 
-            display: 'flex',
+          <span style={{ 
+            display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '32px', 
-            height: '32px', 
-            background: 'var(--accent-primary)', 
+            width: '36px', 
+            height: '36px', 
+            background: 'var(--fg-ink)', 
             color: 'white',
-            borderRadius: '6px',
-            fontSize: '18px',
-            boxShadow: 'var(--shadow-sm)'
-          }}>🎮</div>
+            border: '2px solid var(--fg-ink)',
+            borderRadius: 'var(--border-radius-sm)',
+            fontSize: '20px'
+          }}>🎮</span>
           React Game Base
         </Link>
         
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
           <NavItem to="/" isActive={currentPath === '/'}>Home</NavItem>
           <NavItem to="/demos" isActive={currentPath.startsWith('/demos')}>Demos</NavItem>
           <NavItem to="/docs" isActive={currentPath.startsWith('/docs')}>Docs</NavItem>
-          <div style={{ width: '1px', background: 'var(--border-color)', margin: '0 0.5rem' }}></div>
           <ExternalLink href="https://github.com/HamburgJ/react-game-base">GitHub</ExternalLink>
         </div>
       </div>
@@ -57,14 +56,14 @@ const Navbar: React.FC = () => {
 const NavItem: React.FC<{ to: string; isActive?: boolean; children: React.ReactNode }> = ({ to, isActive, children }) => {
   return (
     <Link to={to} style={{
-      fontFamily: 'var(--font-display)',
-      fontWeight: 500,
+      fontFamily: 'var(--font-body)',
+      fontWeight: 700,
       padding: '0.5rem 1rem',
-      backgroundColor: isActive ? 'var(--bg-surface-hover)' : 'transparent',
-      color: isActive ? 'var(--accent-primary)' : 'var(--fg-dim)',
-      transition: 'all 0.2s',
-      borderRadius: '6px',
-      fontSize: '0.9rem',
+      backgroundColor: isActive ? 'var(--accent-primary)' : 'transparent',
+      color: isActive ? 'white' : 'var(--fg-ink)',
+      border: '2px solid transparent',
+      borderRadius: 'var(--border-radius-md)',
+      transition: 'all 0.1s',
       textDecoration: 'none'
     }}>
       {children}
@@ -75,20 +74,20 @@ const NavItem: React.FC<{ to: string; isActive?: boolean; children: React.ReactN
 const ExternalLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" style={{
-      fontFamily: 'var(--font-display)',
-      fontWeight: 500,
+      fontFamily: 'var(--font-body)',
+      fontWeight: 700,
       padding: '0.5rem 1rem',
-      color: 'var(--fg-dim)',
-      transition: 'all 0.2s',
-      borderRadius: '6px',
-      fontSize: '0.9rem',
+      backgroundColor: 'transparent',
+      color: 'var(--fg-ink)',
+      border: '2px solid var(--fg-ink)',
+      borderRadius: 'var(--border-radius-md)',
+      transition: 'all 0.1s',
       textDecoration: 'none',
-      display: 'flex',
+      display: 'inline-flex',
       alignItems: 'center',
       gap: '4px'
     }}>
-      {children} 
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      {children} ↗
     </a>
   );
 };

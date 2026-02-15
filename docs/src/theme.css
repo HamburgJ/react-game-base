@@ -1,50 +1,54 @@
 :root {
   /* 
-    COLOR WORLD: "Clean Slate"
+    COLOR WORLD: "Studio"
+    Philosophy: Bold, Tactile, Structured.
+    Not boring, but not neon.
   */
   
-  /* Backgrounds */
-  --bg-canvas: #ffffff;
-  --bg-surface: #f8fafc; /* Slate 50 */
-  --bg-surface-hover: #f1f5f9;
+  /* Backgrounds - Warm & Tactile */
+  --bg-canvas: #f2f2e9; /* Oatmeal / Recycled Paper */
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #f0f0f0;
   
   /* Foreground / Text */
-  --fg-ink: #0f172a;    /* Slate 900 */
-  --fg-dim: #64748b;    /* Slate 500 */
+  --fg-ink: #18181b;    /* Zinc 900 - Soft Black */
+  --fg-dim: #52525b;    /* Zinc 600 */
   --fg-on-accent: #ffffff;
 
-  /* Accents - Professional Blue/Indigo Series */
-  --accent-primary: #2563eb;   /* Blue 600 - Primary Actions */
-  --accent-secondary: #475569; /* Slate 600 - Secondary Elements */
-  --accent-tertiary: #cbd5e1;  /* Slate 300 - Subtle Highlights */
-  --accent-quaternary: #0f172a; /* Dark anchor */
+  /* Accents - Sophisticated, not Neon */
+  --accent-primary: #ea580c;   /* Burnt Orange */
+  --accent-secondary: #0f766e; /* Deep Teal */
+  --accent-tertiary: #fcd34d;  /* Muted Gold */
+  --accent-quaternary: #4f46e5; /* Indigo */
 
   /* Semantic */
-  --status-success: #10b981;
-  --status-error: #ef4444;
+  --status-success: #15803d;
+  --status-error: #b91c1c;
   
   /* 
     CRAFT: BORDERS & DEPTH 
+    Philosophy: "It exists in physical space."
   */
-  --border-width: 1px;
-  --border-radius-sm: 6px;
+  --border-width: 2px;
+  --border-radius-sm: 4px;
   --border-radius-md: 8px;
-  --border-radius-lg: 16px;
-  --border-color: #e2e8f0; /* Slate 200 */
+  --border-radius-lg: 12px;
+  --border-color: var(--fg-ink); /* Sharp contrast borders */
   
-  /* Soft, diffused shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --shadow-active: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  /* Hard Shadows - The "Sticker" Look returned, but disciplined */
+  --shadow-sm: 2px 2px 0px 0px var(--fg-ink);
+  --shadow-md: 4px 4px 0px 0px var(--fg-ink);
+  --shadow-lg: 8px 8px 0px 0px var(--fg-ink);
+  --shadow-hover: 6px 6px 0px 0px var(--fg-ink);
+  --shadow-active: 0px 0px 0px 0px var(--fg-ink);
 
   /* 
     TYPOGRAPHY 
+    Intent: Editorial and Loud.
   */
-  --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-display: "Clash Display", "Archivo Black", "Impact", system-ui, sans-serif; /* Fallback to heavy weights */
+  --font-body: "Satoshi", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
   
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -52,10 +56,10 @@
   --text-lg: 1.125rem;
   --text-xl: 1.25rem;
   --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
-  --text-4xl: 2.25rem;
-
-  /* SPACING - Added */
+  --text-3xl: 2rem;
+  --text-4xl: 3rem;
+  
+  /* Spacing */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -78,59 +82,63 @@ body {
   color: var(--fg-ink);
   font-family: var(--font-body);
   margin: 0;
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   
-  /* Subtle pattern - faint grid */
-  background-image: 
-    linear-gradient(to right, #f1f5f9 1px, transparent 1px),
-    linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
-  background-size: 40px 40px;
+  /* Dot grid pattern is back, but subtle */
+  background-image: radial-gradient(var(--fg-dim) 1px, transparent 0);
+  background-size: 24px 24px;
 }
 
 /* UTILITY CLASSES */
 
 .container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-/* Modern Card */
+/* Personality Card - The "Chunk" Style */
 .card-base {
   background: var(--bg-surface);
   border: var(--border-width) solid var(--border-color);
   border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-sm);
-  transition: all 0.2s ease;
+  box-shadow: var(--shadow-md);
+  transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .card-base:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--accent-tertiary);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-hover);
 }
 
 /* Typography styles */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 700;
-  letter-spacing: -0.025em;
+  font-weight: 800;
+  letter-spacing: -0.03em;
   margin-top: 0;
   color: var(--fg-ink);
+  line-height: 1.1;
 }
 
-h1 { font-size: var(--text-4xl); line-height: 1.1; }
+h1 { font-size: var(--text-4xl); }
 h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-xl); }
 
 a {
-  color: var(--accent-primary);
-  text-decoration: none;
-  font-weight: 500;
+  color: var(--fg-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  font-weight: 700;
+  text-decoration-color: var(--accent-primary);
 }
 
 a:hover {
-  text-decoration: underline;
+  background-color: var(--accent-primary);
+  color: white;
+  text-decoration: none;
 }
 
 /* Button Reset & Base */
@@ -140,44 +148,55 @@ button {
 }
 
 .btn-primary {
-  background-color: var(--accent-primary);
+  background-color: var(--fg-ink);
   color: white;
-  border: none;
-  padding: 0.75rem 1.5rem;
+  border: var(--border-width) solid var(--fg-ink);
+  padding: 0.75rem 2rem;
   border-radius: var(--border-radius-md);
-  font-weight: 600;
+  font-weight: 700;
+  font-size: var(--text-base);
   box-shadow: var(--shadow-sm);
-  transition: all 0.2s;
+  transition: all 0.1s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
 }
 
 .btn-primary:hover {
-  background-color: #1d4ed8;
+  background-color: var(--accent-primary);
+  border-color: var(--fg-ink);
   box-shadow: var(--shadow-md);
+  transform: translate(-2px, -2px);
+  color: white;
 }
 
 .btn-secondary {
-  background-color: white;
+  background-color: var(--bg-surface);
   color: var(--fg-ink);
-  border: 1px solid var(--border-color);
-  padding: 0.75rem 1.5rem;
+  border: var(--border-width) solid var(--fg-ink);
+  padding: 0.75rem 2rem;
   border-radius: var(--border-radius-md);
-  font-weight: 600;
+  font-weight: 700;
+  font-size: var(--text-base);
   box-shadow: var(--shadow-sm);
-  transition: all 0.2s;
+  transition: all 0.1s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
 }
 
 .btn-secondary:hover {
-  border-color: var(--accent-tertiary);
-  background-color: var(--bg-surface);
+  background-color: var(--accent-tertiary);
+  box-shadow: var(--shadow-md);
+  transform: translate(-2px, -2px);
+  color: var(--fg-ink);
 }
 
 /* Layout Utilities */
-.flex-split {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -186,11 +205,13 @@ button {
 
 /* Code block styling */
 pre {
-  background: #1e293b;
-  color: #e2e8f0;
+  background: var(--fg-ink);
+  color: #f1f5f9;
   padding: 1.5rem;
+  border: 2px solid var(--fg-ink);
   border-radius: var(--border-radius-md);
   overflow-x: auto;
   font-family: var(--font-mono);
   font-size: var(--text-sm);
+  box-shadow: var(--shadow-sm);
 }
