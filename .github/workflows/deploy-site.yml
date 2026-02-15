@@ -35,24 +35,24 @@ jobs:
           cd examples/worduel
           npm ci
           npm run build -- --base=./
-          mkdir -p ../../docs/public/demos/worduel
-          cp -r dist/* ../../docs/public/demos/worduel/
+          mkdir -p ../../docs/public/games/worduel
+          cp -r dist/* ../../docs/public/games/worduel/
           cd ../..
 
           # Build Numbrella
           cd examples/numbrella
           npm ci
           npm run build -- --base=./
-          mkdir -p ../../docs/public/demos/numbrella
-          cp -r dist/* ../../docs/public/demos/numbrella/
+          mkdir -p ../../docs/public/games/numbrella
+          cp -r dist/* ../../docs/public/games/numbrella/
           cd ../..
 
           # Build Chromatic
           cd examples/chromatic
           npm ci
           npm run build -- --base=./
-          mkdir -p ../../docs/public/demos/chromatic
-          cp -r dist/* ../../docs/public/demos/chromatic/
+          mkdir -p ../../docs/public/games/chromatic
+          cp -r dist/* ../../docs/public/games/chromatic/
           cd ../..
 
       - name: Install Docs Dependencies

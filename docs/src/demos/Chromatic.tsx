@@ -36,7 +36,7 @@ const ChromaticDemo: React.FC = () => {
         }}>
           <iframe 
             ref={iframeRef}
-            src="./demos/chromatic/" 
+            src={import.meta.env.BASE_URL + 'games/chromatic/index.html'} 
             title="Chromatic Game Demo"
             style={{ 
               width: '100%', 
@@ -54,7 +54,7 @@ const ChromaticDemo: React.FC = () => {
         fontSize: '0.875rem',
         color: 'var(--fg-dim)'
       }}>
-        <a href="./demos/chromatic/" target="_blank" style={{ color: 'var(--accent-primary)' }}>Open in new tab ↗</a>
+        <a href={import.meta.env.BASE_URL + 'games/chromatic/index.html'} target="_blank" style={{ color: 'var(--accent-primary)' }}>Open in new tab ↗</a>
       </div>
     </div>
   );

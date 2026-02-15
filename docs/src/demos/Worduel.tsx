@@ -36,7 +36,7 @@ const WorduelDemo: React.FC = () => {
         }}>
           <iframe 
             ref={iframeRef}
-            src="./demos/worduel/" 
+            src={import.meta.env.BASE_URL + 'games/worduel/index.html'} 
             title="Worduel Game Demo"
             style={{ 
               width: '100%', 
@@ -54,7 +54,7 @@ const WorduelDemo: React.FC = () => {
         fontSize: '0.875rem',
         color: 'var(--fg-dim)'
       }}>
-        <a href="./demos/worduel/" target="_blank" style={{ color: 'var(--accent-primary)' }}>Open in new tab ↗</a>
+        <a href={import.meta.env.BASE_URL + 'games/worduel/index.html'} target="_blank" style={{ color: 'var(--accent-primary)' }}>Open in new tab ↗</a>
       </div>
     </div>
   );

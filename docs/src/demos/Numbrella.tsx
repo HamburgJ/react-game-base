@@ -36,7 +36,7 @@ const NumbrellaDemo: React.FC = () => {
         }}>
           <iframe 
             ref={iframeRef}
-            src="./demos/numbrella/" 
+            src={import.meta.env.BASE_URL + 'games/numbrella/index.html'} 
             title="Numbrella Game Demo"
             style={{ 
               width: '100%', 
@@ -54,7 +54,7 @@ const NumbrellaDemo: React.FC = () => {
         fontSize: '0.875rem',
         color: 'var(--fg-dim)'
       }}>
-        <a href="./demos/numbrella/" target="_blank" style={{ color: 'var(--accent-primary)' }}>Open in new tab ↗</a>
+        <a href={import.meta.env.BASE_URL + 'games/numbrella/index.html'} target="_blank" style={{ color: 'var(--accent-primary)' }}>Open in new tab ↗</a>
       </div>
     </div>
   );
