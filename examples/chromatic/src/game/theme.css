@@ -1,128 +1,150 @@
 /* ============================================
-   CHROMATIC THEME — "The Painter"
-   Warm coral/gold, soft and airy, rounded shapes.
-   Inspired by: watercolor palettes, paint swatches, art studios.
+   CHROMATIC THEME — "Bauhaus Modern"
+   Bold geometric shapes, primary colors, functionalism.
+   Inspired by: Weimer Arts & Crafts, Kandinsky, Mondrian.
    ============================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;700;900&display=swap');
+
 :root {
-  --primary-color: #e76f51;
-  --primary-light: #f4a261;
-  --primary-dark: #c1440e;
-  --text-primary: #264653;
-  --text-secondary: #6b8f8d;
-  --bg-light: #fdf8f4;
-  --bg-dark: #1a1410;
-  --font-game: 'Outfit', sans-serif;
+  /* Bauhaus Palette */
+  --bauhaus-red: #e63946;
+  --bauhaus-blue: #1d3557;
+  --bauhaus-yellow: #f1faee; /* Using off-white as base */
+  --bauhaus-dark: #111111;
+  --bauhaus-light: #f1f1f1;
+  
+  --font-bauhaus: 'Outfit', sans-serif;
 }
 
-[data-bs-theme='dark'] {
-  --text-primary: #e9ecef;
-  --text-secondary: #8eaba9;
-  --bg-dark: #141210;
-}
-
-/* Override body background */
 body {
-  background-color: var(--bg-light);
+  background-color: var(--bauhaus-light) !important;
+  color: var(--bauhaus-dark) !important;
+  font-family: var(--font-bauhaus) !important;
 }
 
+/* Background Geometry */
 body::before {
-  /* Soft scattered dots like paint splatter */
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: -1;
+  opacity: 0.05;
   background-image: 
-    radial-gradient(circle at 2px 2px, var(--primary-light) 1px, transparent 0);
-  background-size: 50px 50px;
-  opacity: 0.08;
+    radial-gradient(circle at 20% 20%, #000 2px, transparent 2.5px),
+    radial-gradient(circle at 80% 80%, #000 2px, transparent 2.5px);
+  background-size: 40px 40px;
 }
 
-[data-bs-theme='dark'] body {
-  background-color: var(--bg-dark);
-}
-
-/* Game title: warm, rounded feel */
-.game-title {
-  color: var(--primary-color);
-  font-weight: 700;
-  font-size: 2.75rem;
-}
-
-/* Buttons: warm gradient with generous rounding */
-.btn-primary,
-.btn-game {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%) !important;
-  border: none !important;
-  font-weight: 700;
-  border-radius: 24px !important;
-  padding: 0.75rem 2.5rem !important;
-}
-
-.btn-primary:hover,
-.btn-game:hover {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%) !important;
-  box-shadow: 0 6px 24px rgba(231, 111, 81, 0.3) !important;
-}
-
-/* Cards: warm, soft, very rounded */
-.home-card,
-.game-container {
-  border: 2px solid rgba(231, 111, 81, 0.15) !important;
-  border-radius: 20px !important;
-  box-shadow: 0 8px 32px rgba(231, 111, 81, 0.08) !important;
-  background: var(--bg-light) !important;
-}
-
-[data-bs-theme='dark'] .home-card,
-[data-bs-theme='dark'] .game-container {
-  background: var(--bg-dark) !important;
-  border-color: rgba(231, 111, 81, 0.2) !important;
-}
-
-/* Stats values: coral with paint-like weight */
-.stat-value {
-  color: var(--primary-color) !important;
-  font-weight: 800;
-}
-
-/* Color circles: bigger shadows for paint-swatch feel */
-.chromatic-board div[style*="border-radius: 50%"] {
-  border: 3px solid var(--text-primary) !important;
-}
-
-/* Sliders: warm accent colors */
-.chromatic-board input[type="range"] {
-  height: 8px;
-  border-radius: 4px;
-  outline: none;
-}
-
-.chromatic-board label {
-  font-weight: 600;
-  color: var(--text-primary);
-  font-size: 0.9rem;
-  letter-spacing: 0.05em;
+/* Typography */
+h1, h2, h3, .game-title {
+  font-weight: 900 !important;
   text-transform: uppercase;
+  letter-spacing: -0.05em;
 }
 
-/* Selection color */
-::selection {
-  background-color: var(--primary-light);
-  color: white;
+.game-title {
+  font-size: 3.5rem;
+  background: var(--bauhaus-dark);
+  color: var(--bauhaus-light);
+  padding: 0.5rem 1rem;
+  transform: rotate(-2deg);
+  display: inline-block;
+  margin-bottom: 2rem;
 }
 
-/* Countdown timer */
-.countdown-value {
-  color: var(--primary-color) !important;
+/* Button Asymmetry */
+.btn {
+  border: 2px solid var(--bauhaus-dark) !important;
+  font-weight: 700;
+  text-transform: lowercase;
+  border-radius: 99px !important; /* Pills */
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Nav link hover */
-.nav-icons .nav-link:hover {
-  color: var(--primary-color) !important;
+.btn-primary {
+  background: var(--bauhaus-blue) !important;
+  color: white !important;
+  box-shadow: 4px 4px 0 var(--bauhaus-dark);
 }
 
-/* Override border-radius on all interactive elements for softness */
-.modal-game .modal-content {
-  border-radius: 20px !important;
+.btn-primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--bauhaus-dark);
 }
 
-.toast-item {
-  border-radius: 20px !important;
+.btn-secondary {
+  background: white !important;
+  color: var(--bauhaus-dark) !important;
+  box-shadow: 4px 4px 0 var(--bauhaus-red);
+}
+
+/* Modals / Cards */
+.modal-content, .card {
+  border: 3px solid var(--bauhaus-dark) !important;
+  border-radius: 12px !important;
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+  background: white !important;
+}
+
+.modal-header {
+  background: var(--bauhaus-light);
+  border-bottom: 3px solid var(--bauhaus-dark) !important;
+}
+
+.modal-footer {
+  border-top: none !important;
+}
+
+/* Grid & Tiles - Circular motif vs Square motif */
+/* Let's go CIRCLES for the tiles to be distinct */
+
+.tile-empty {
+  border: 2px dashed #ccc !important;
+  border-radius: 50% !important; /* Circle tiles! */
+  background: transparent;
+}
+
+.tile-filled {
+  border: 2px solid var(--bauhaus-dark) !important;
+  border-radius: 50% !important;
+  color: var(--bauhaus-dark);
+  font-weight: 900;
+  background: white;
+}
+
+.tile-correct {
+  background-color: #2a9d8f !important; /* Teal */
+  border: none !important;
+  border-radius: 50% !important;
+  color: white !important;
+}
+
+.tile-present {
+  background-color: #e9c46a !important; /* Yellow/Ochre */
+  border: none !important;
+  border-radius: 50% !important;
+  color: white !important;
+}
+
+.tile-absent {
+  background-color: #ddd !important;
+  border: none !important;
+  border-radius: 50% !important;
+  color: #888 !important;
+}
+
+/* Keyboard overrides */
+.keyboard-key {
+  border-radius: 8px !important;
+  font-family: var(--font-bauhaus);
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+/* Special distinct styling for current row? */
+.row-active .tile-empty {
+  border-color: var(--bauhaus-blue) !important;
+  transform: scale(1.05);
+  transition: transform 0.2s;
 }

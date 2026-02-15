@@ -1,105 +1,142 @@
 /* ============================================
-   WORDUEL THEME — "The Scholar"
-   Deep greens, warm cream, tight letterbox feel.
-   Inspired by: chalkboards, library lamps, felt tables.
+   WORDUEL THEME — "The Daily Gazette"
+   A classic newspaper crossword aesthetic.
+   Serif fonts, ink black, paper texture.
    ============================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
 :root {
-  --primary-color: #2d6a4f;
-  --primary-light: #52b788;
-  --primary-dark: #1b4332;
-  --text-primary: #1b1b1b;
-  --text-secondary: #6b705c;
-  --bg-light: #fefae0;
-  --bg-dark: #1b2421;
-  --accent-correct: #40916c;
-  --accent-present: #dda15e;
-  --accent-absent: #6c757d;
-  --font-game: 'Outfit', sans-serif;
+  /* Newspaper Palette */
+  --ink-black: #121212;
+  --paper-white: #fdfbf7;
+  --paper-gray: #e5e5e0;
+  --news-gray: #787c7e;
+  
+  /* Game Status Colors - Muted Ink Styles */
+  --color-correct: #538d4e;  /* Classic Green */
+  --color-present: #b59f3b;  /* Gold/Mustard */
+  --color-absent:  #787c7e;  /* Grey */
+  
+  /* Fonts */
+  --font-headline: 'Playfair Display', "Times New Roman", serif;
+  --font-body: 'Lora', Georgia, serif;
 }
 
-[data-bs-theme='dark'] {
-  --text-primary: #e9edc9;
-  --text-secondary: #a4ac86;
-  --bg-dark: #0d1b15;
-}
-
-/* Override body background */
 body {
-  background-color: var(--bg-light);
+  background-color: var(--paper-white);
+  color: var(--ink-black);
+  font-family: var(--font-body);
 }
 
+/* Texture overlay for paper feel */
 body::before {
-  /* Subtle crosshatch instead of dots */
-  background-image: 
-    linear-gradient(45deg, var(--text-secondary) 0.5px, transparent 0.5px),
-    linear-gradient(-45deg, var(--text-secondary) 0.5px, transparent 0.5px);
-  background-size: 20px 20px;
-  opacity: 0.04;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: -1;
 }
 
-[data-bs-theme='dark'] body {
-  background-color: var(--bg-dark);
+/* Typography Overrides */
+h1, h2, h3, .game-title {
+  font-family: var(--font-headline) !important;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
 }
 
-/* Game title: heavy, tracked out */
 .game-title {
-  color: var(--primary-color);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 2.75rem;
+  font-size: 3.5rem;
+  border-bottom: 3px double var(--ink-black);
+  border-top: 1px solid var(--ink-black);
+  padding: 0.5rem 0;
+  margin-bottom: 2rem;
+  line-height: 1;
 }
 
-/* Buttons: solid green with sharp feel */
-.btn-primary,
-.btn-game {
-  background-color: var(--primary-color) !important;
-  border-color: var(--primary-dark) !important;
-  border-width: 2px;
-  font-weight: 700;
+/* Button Styling - "Editorial" */
+.btn {
+  font-family: var(--font-headline);
+  border-radius: 0 !important; /* Sharp corners */
+  text-transform: uppercase;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-weight: 700;
+  transition: all 0.2s ease;
 }
 
-.btn-primary:hover,
-.btn-game:hover {
-  background-color: var(--primary-dark) !important;
-  border-color: var(--primary-dark) !important;
+.btn-primary {
+  background-color: var(--ink-black) !important;
+  color: var(--paper-white) !important;
+  border: 1px solid var(--ink-black) !important;
 }
 
-/* Cards: cream with green accent border */
-.home-card,
-.game-container {
-  border: 2px solid var(--primary-color) !important;
-  border-radius: 8px !important;
-  box-shadow: 4px 4px 0px var(--primary-dark) !important;
+.btn-primary:hover {
+  background-color: transparent !important;
+  color: var(--ink-black) !important;
 }
 
-/* Stats: green values */
-.stat-value {
-  color: var(--primary-color) !important;
-  font-weight: 800;
+.btn-secondary {
+  background-color: transparent !important;
+  color: var(--ink-black) !important;
+  border: 1px solid var(--ink-black) !important;
 }
 
-/* Word grid tile overrides */
-.worduel-board div[style*="aspect-ratio"] {
-  border-radius: 2px;
-  font-family: 'Outfit', sans-serif;
+/* Modal/Card Styling */
+.modal-content, .card {
+  background-color: var(--paper-white) !important;
+  border: 1px solid var(--ink-black) !important;
+  border-radius: 0 !important;
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
 }
 
-/* Selection color */
-::selection {
-  background-color: var(--primary-light);
-  color: white;
+.modal-header {
+  border-bottom: 1px solid var(--ink-black) !important;
 }
 
-/* Countdown timer */
-.countdown-value {
-  color: var(--primary-color) !important;
+.modal-footer {
+  border-top: 1px solid var(--ink-black) !important;
 }
 
-/* Nav link hover */
-.nav-icons .nav-link:hover {
-  color: var(--primary-color) !important;
+/* Game Board Specifics */
+/* This targets the letter tiles if they share generic classes, 
+   but we might need to be specific if the component structure uses inline styles.
+   Assuming standard bootstrap or custom classes from the template. */
+
+/* Tile Base */
+.tile-empty {
+  border: 2px solid var(--paper-gray) !important;
+  background: transparent;
+}
+
+.tile-filled {
+  border: 2px solid var(--ink-black) !important;
+  color: var(--ink-black);
+  animation: popIn 0.1s;
+}
+
+.tile-correct {
+  background-color: var(--color-correct) !important;
+  border-color: var(--color-correct) !important;
+  color: white !important;
+}
+
+.tile-present {
+  background-color: var(--color-present) !important;
+  border-color: var(--color-present) !important;
+  color: white !important;
+}
+
+.tile-absent {
+  background-color: var(--color-absent) !important;
+  border-color: var(--color-absent) !important;
+  color: white !important;
+}
+
+/* Keyboard overrides */
+.keyboard-key {
+  border-radius: 4px !important;
+  font-family: var(--font-body);
+  font-weight: bold;
 }
