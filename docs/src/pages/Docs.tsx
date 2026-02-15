@@ -11,7 +11,7 @@ const Docs: React.FC = () => {
           marginBottom: 'var(--space-8)',
           textShadow: '4px 4px 0 var(--accent-secondary)'
         }}>
-          SYSTEM_MANUAL_V1.0
+          GETTING STARTED
         </h1>
         
         <div style={{ 
@@ -22,14 +22,14 @@ const Docs: React.FC = () => {
           boxShadow: 'var(--shadow-lg)'
         }}>
           <h2 style={{ borderBottom: '2px dashed var(--fg-ink)', paddingBottom: 'var(--space-2)' }}>
-            01_Initialization
+            01. QUICK START
           </h2>
           <p style={{ fontFamily: 'var(--font-display)' }}>
-            To begin assembly, execute the following commands in your terminal. Ensure your operating system (Node.js) is v18+.
+            Clone the template, install dependencies, and start the dev server. Requires Node.js 18+.
           </p>
           
           <div style={{ 
-            background: '#000', 
+            background: '#0d0d0d', 
             color: '#0f0', 
             padding: 'var(--space-4)', 
             borderRadius: 'var(--border-radius-sm)', 
@@ -37,22 +37,39 @@ const Docs: React.FC = () => {
             fontFamily: 'monospace',
             border: '2px solid var(--fg-dim)'
           }}>
-            <p style={{ margin: 0 }}>$ npm install</p>
+            <p style={{ margin: 0, marginBottom: '4px' }}>$ git clone https://github.com/HamburgJ/react-game-base.git</p>
+            <p style={{ margin: 0, marginBottom: '4px' }}>$ cd react-game-base</p>
+            <p style={{ margin: 0, marginBottom: '4px' }}>$ npm install</p>
             <p style={{ margin: 0 }}>$ npm run dev</p>
           </div>
 
           <h2 style={{ marginTop: 'var(--space-8)', borderBottom: '2px dashed var(--fg-ink)', paddingBottom: 'var(--space-2)' }}>
-            02_Configuration
+            02. CONFIGURATION
           </h2>
           <p style={{ fontFamily: 'var(--font-display)' }}>
-            Access the mainframe settings at <code style={{ background: 'var(--accent-tertiary)', padding: '0 4px', border: '1px solid var(--fg-ink)' }}>src/game.config.ts</code>. customize identity matrix.
+            Edit <code style={{ background: 'var(--accent-tertiary)', padding: '0 4px', border: '1px solid var(--fg-ink)' }}>src/game.config.ts</code> to customize your game{"'"}s identity and behavior.
           </p>
           
           <ul style={{ listStyle: 'square', marginLeft: '20px', fontFamily: 'var(--font-display)' }}>
-            <li>Set GAME_TITLE parameter</li>
-            <li>Define SHARE_URL vector</li>
-            <li>Inject GOOGLE_ANALYTICS_ID (optional)</li>
+            <li>Set your game{"'"}s title and description</li>
+            <li>Configure the share URL for results sharing</li>
+            <li>Add your Google Analytics ID (optional)</li>
+            <li>Customize the color scheme via CSS variables</li>
           </ul>
+
+          <h2 style={{ marginTop: 'var(--space-8)', borderBottom: '2px dashed var(--fg-ink)', paddingBottom: 'var(--space-2)' }}>
+            03. BUILD YOUR GAME
+          </h2>
+          <p style={{ fontFamily: 'var(--font-display)' }}>
+            Replace the default game logic in <code style={{ background: 'var(--accent-tertiary)', padding: '0 4px', border: '1px solid var(--fg-ink)' }}>src/game/</code> with your own puzzle mechanics. The template handles everything else: daily seeding, streak tracking, share buttons, settings, and theming.
+          </p>
+
+          <h2 style={{ marginTop: 'var(--space-8)', borderBottom: '2px dashed var(--fg-ink)', paddingBottom: 'var(--space-2)' }}>
+            04. DEPLOY
+          </h2>
+          <p style={{ fontFamily: 'var(--font-display)' }}>
+            Push to <code style={{ background: 'var(--accent-tertiary)', padding: '0 4px', border: '1px solid var(--fg-ink)' }}>main</code> and the included GitHub Actions workflow will build and deploy your game to GitHub Pages automatically.
+          </p>
 
           <div style={{ 
             marginTop: 'var(--space-8)', 
@@ -61,9 +78,10 @@ const Docs: React.FC = () => {
             border: 'var(--border-width) solid var(--fg-ink)',
             fontWeight: 'bold',
             textAlign: 'center',
-            transform: 'rotate(-1deg)'
+            transform: 'rotate(-0.5deg)',
+            fontFamily: 'var(--font-display)'
           }}>
-             WARNING: DO NOT EDIT THE CORE FLUX CAPACITOR WITHOUT BACKUP.
+             TIP: Check out the 3 demo games to see the template in action before building your own.
           </div>
         </div>
       </div>

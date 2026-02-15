@@ -2,102 +2,75 @@ import React from 'react';
 import { Outlet, useLocation, Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 
+const GAMES = [
+  { slug: 'worduel', name: 'Worduel', emoji: '📝', color: '#2d6a4f', desc: 'Guess the 5-letter word in 6 tries. Classic daily word puzzle.' },
+  { slug: 'numbrella', name: 'Numbrella', emoji: '🔢', color: 'var(--accent-quaternary)', desc: 'Hit the target number using basic math operations.' },
+  { slug: 'chromatic', name: 'Chromatic', emoji: '🎨', color: 'var(--accent-primary)', desc: 'Mix RGB sliders to match the daily target color.' },
+];
+
 const Demos: React.FC = () => {
   const location = useLocation();
   const isIndex = location.pathname === '/demos' || location.pathname === '/demos/';
+  const currentGame = location.pathname.split('/').pop();
 
-  // If we are at the index, show the "Select Game" screen
   if (isIndex) {
     return (
       <Layout>
         <div className="container" style={{ padding: 'var(--space-8) 0' }}>
-          <h1 style={{ textAlign: 'center', marginBottom: 'var(--space-8)', fontSize: 'var(--text-3xl)', textShadow: '4px 4px 0 var(--accent-primary)' }}>
-            SELECT CARTRIDGE
+          <h1 style={{ textAlign: 'center', marginBottom: 'var(--space-2)', fontSize: 'var(--text-3xl)', textShadow: '4px 4px 0 var(--accent-primary)' }}>
+            DEMO GAMES
           </h1>
+          <p style={{ textAlign: 'center', color: 'var(--fg-dim)', marginBottom: 'var(--space-8)', maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto' }}>
+            Three different games built with the same template. Pick one and play.
+          </p>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'var(--space-8)' }}>
-             {/* Game 1 */}
-             <Link to="worduel" className="brutalist-card call-to-action" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', transform: 'rotate(-1deg)', transition: 'all 0.2s' }}>
-               <div style={{ width: '100%', aspectRatio: '16/9', background: 'var(--accent-primary)', marginBottom: 'var(--space-4)', border: 'var(--border-width) solid var(--fg-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', color: 'white' }}>
-                 📝
-               </div>
-               <h2 style={{ fontSize: 'var(--text-xl)' }}>WORDUEL</h2>
-               <p style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-sm)' }}>
-                 Reflexes: Low<br/>
-                 Brain: High
-               </p>
-               <span className="brutalist-btn" style={{ marginTop: 'auto' }}>INSERT →</span>
-             </Link>
-
-             {/* Game 2 */}
-             <Link to="numbrella" className="brutalist-card call-to-action" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', transform: 'rotate(1deg)', transition: 'all 0.2s' }}>
-               <div style={{ width: '100%', aspectRatio: '16/9', background: 'var(--accent-quaternary)', marginBottom: 'var(--space-4)', border: 'var(--border-width) solid var(--fg-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', color: 'white' }}>
-                 🔢
-               </div>
-               <h2 style={{ fontSize: 'var(--text-xl)' }}>NUMBRELLA</h2>
-               <p style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-sm)' }}>
-                 Reflexes: Low<br/>
-                 Brain: Max
-               </p>
-               <span className="brutalist-btn" style={{ marginTop: 'auto' }}>INSERT →</span>
-             </Link>
-
-             {/* Game 3 */}
-             <Link to="chromatic" className="brutalist-card call-to-action" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', transform: 'rotate(-0.5deg)', transition: 'all 0.2s' }}>
-               <div style={{ width: '100%', aspectRatio: '16/9', background: 'var(--accent-tertiary)', marginBottom: 'var(--space-4)', border: 'var(--border-width) solid var(--fg-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', color: 'black' }}>
-                 🎨
-               </div>
-               <h2 style={{ fontSize: 'var(--text-xl)' }}>CHROMATIC</h2>
-               <p style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-sm)' }}>
-                 Reflexes: Med<br/>
-                 Brain: Med
-               </p>
-               <span className="brutalist-btn" style={{ marginTop: 'auto' }}>INSERT →</span>
-             </Link>
+             {GAMES.map((game, i) => (
+               <Link key={game.slug} to={game.slug} className="brutalist-card" style={{ 
+                 textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', 
+                 transform: `rotate(${i % 2 === 0 ? -1 : 1}deg)`, transition: 'all 0.2s' 
+               }}>
+                 <div style={{ width: '100%', aspectRatio: '16/9', background: game.color, marginBottom: 'var(--space-4)', border: 'var(--border-width) solid var(--fg-ink)', borderRadius: 'var(--border-radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '4rem' }}>
+                   {game.emoji}
+                 </div>
+                 <h2 style={{ fontSize: 'var(--text-xl)', marginBottom: 'var(--space-1)' }}>{game.name.toUpperCase()}</h2>
+                 <p style={{ fontSize: 'var(--text-sm)', color: 'var(--fg-dim)', marginBottom: 'var(--space-4)' }}>
+                   {game.desc}
+                 </p>
+                 <span className="brutalist-btn" style={{ marginTop: 'auto' }}>PLAY →</span>
+               </Link>
+             ))}
           </div>
         </div>
       </Layout>
     );
   }
 
-  // If a game is selected, show the "Console" view
+  const activeGame = GAMES.find(g => g.slug === currentGame);
+
   return (
     <Layout>
       <div className="container">
+        {/* Back bar */}
         <div style={{ padding: 'var(--space-4) 0', display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
-           <Link to="/demos" className="brutalist-btn secondary" style={{ padding: '4px 8px', fontSize: '0.8rem' }}>
-             ← EJECT CARTRIDGE
+           <Link to="/demos" className="brutalist-btn secondary" style={{ padding: '4px 12px', fontSize: '0.8rem' }}>
+             ← BACK TO DEMOS
            </Link>
            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 'bold' }}>
-             PLAYING: {location.pathname.split('/').pop()?.toUpperCase()}
+             NOW PLAYING: {activeGame?.name.toUpperCase() ?? currentGame?.toUpperCase()}
            </span>
         </div>
 
-        {/* The Monitor Bezel */}
+        {/* Game Frame */}
         <div style={{ 
-          background: '#2a2a2a', 
-          padding: '20px 20px 40px 20px', 
-          borderRadius: '20px 20px 4px 4px', 
-          border: '4px solid #1a1a1a',
-          boxShadow: '0 10px 0 #1a1a1a, 0 20px 0 rgba(0,0,0,0.2)'
+          background: 'var(--bg-surface)', 
+          border: 'var(--border-width) solid var(--fg-ink)',
+          borderRadius: 'var(--border-radius-lg)',
+          boxShadow: 'var(--shadow-lg)',
+          overflow: 'hidden',
+          marginBottom: 'var(--space-8)'
         }}>
-           <div style={{ 
-             background: 'white', 
-             border: '4px inset #1a1a1a', 
-             minHeight: '600px',
-             borderRadius: '4px',
-             overflow: 'hidden',
-             position: 'relative'
-           }}>
-             {/* CRT Effect Overlay */}
-             <div style={{ pointerEvents: 'none', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%)', backgroundSize: '100% 4px', zIndex: 10 }}></div>
-             <Outlet />
-           </div>
-           
-           <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', marginTop: '20px' }}>
-              <div style={{ width: '12px', height: '12px', borderRadius: '50%', background: 'red', boxShadow: '0 0 10px red' }}></div>
-              <div style={{ fontFamily: 'monospace', color: '#666' }}>SONY TRINITRON</div>
-           </div>
+          <Outlet />
         </div>
       </div>
     </Layout>

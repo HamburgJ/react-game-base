@@ -18,37 +18,42 @@ const Navbar: React.FC = () => {
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Link to="/" style={{ 
           fontFamily: 'var(--font-display)', 
-          fontSize: '1.5rem', 
+          fontSize: '1.25rem', 
           fontWeight: 900,
           textTransform: 'uppercase', 
-          color: 'var(--accent-primary)',
-          textShadow: '2px 2px 0px var(--fg-ink)',
+          color: 'var(--fg-ink)',
           display: 'flex',
           alignItems: 'center',
           gap: 'var(--space-2)'
         }}>
           <span style={{ 
-            display: 'inline-block', 
-            width: '24px', 
-            height: '24px', 
-            background: 'var(--accent-secondary)', 
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '32px', 
+            height: '32px', 
+            background: 'var(--accent-primary)', 
+            color: 'white',
             border: '2px solid var(--fg-ink)',
-            boxShadow: '2px 2px 0 var(--fg-ink)' 
-          }}></span>
-          RGB_System
+            boxShadow: '2px 2px 0 var(--fg-ink)',
+            borderRadius: '4px',
+            fontSize: '16px'
+          }}>🎮</span>
+          React Game Base
         </Link>
         
         <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
-          <NavLink to="/" isActive={currentPath === '/'}>Index</NavLink>
-          <NavLink to="/demos" isActive={currentPath.startsWith('/demos')}>Games</NavLink>
-          <ExternalLink href="https://github.com/joshhamburger/react-game-base">Src_Code</ExternalLink>
+          <NavItem to="/" isActive={currentPath === '/'}>Home</NavItem>
+          <NavItem to="/demos" isActive={currentPath.startsWith('/demos')}>Demos</NavItem>
+          <NavItem to="/docs" isActive={currentPath.startsWith('/docs')}>Docs</NavItem>
+          <ExternalLink href="https://github.com/HamburgJ/react-game-base">GitHub</ExternalLink>
         </div>
       </div>
     </nav>
   );
 };
 
-const NavLink: React.FC<{ to: string; isActive?: boolean; children: React.ReactNode }> = ({ to, isActive, children }) => {
+const NavItem: React.FC<{ to: string; isActive?: boolean; children: React.ReactNode }> = ({ to, isActive, children }) => {
   return (
     <Link to={to} style={{
       fontFamily: 'var(--font-display)',
@@ -61,7 +66,8 @@ const NavLink: React.FC<{ to: string; isActive?: boolean; children: React.ReactN
       color: 'var(--fg-ink)',
       boxShadow: isActive ? '2px 2px 0 var(--fg-ink)' : 'none',
       transition: 'all 0.1s',
-      borderRadius: 'var(--border-radius-sm)'
+      borderRadius: 'var(--border-radius-sm)',
+      fontSize: 'var(--text-sm)'
     }}>
       {children}
     </Link>
@@ -78,7 +84,8 @@ const ExternalLink: React.FC<{ href: string; children: React.ReactNode }> = ({ h
       border: '2px solid transparent',
       color: 'var(--fg-dim)',
       transition: 'all 0.1s',
-      borderRadius: 'var(--border-radius-sm)'
+      borderRadius: 'var(--border-radius-sm)',
+      fontSize: 'var(--text-sm)'
     }}>
       {children} ↗
     </a>
