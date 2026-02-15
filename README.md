@@ -1,198 +1,160 @@
-# React Game Base Template
+<!-- Badges -->
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.2-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18-blue?logo=react)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5-purple?logo=vite)](https://vitejs.dev/)
+[![PWA](https://img.shields.io/badge/PWA-Ready-green?logo=pwa)](https://web.dev/progressive-web-apps/)
 
-A template repository for creating daily browser games like Wordle, Connections, or similar puzzle games. Features automatic deployment, state persistence, daily streaks, and responsive design.
+# ⚡ React Game Base
 
-## Play the [Live Demo](https://burgerfun.tech/four-nines/) of Four Nines, a daily puzzle game created from this template
+**Build your own Wordle in minutes, not weeks.**
 
-## Features
+The React + TypeScript template for daily puzzle games. Streaks, sharing, analytics, dark mode, and one-click deploy — all included. Just add your game.
 
-- 🎮 Perfect for daily puzzle games
-- 🌙 Built-in dark/light theme
-- 📊 Daily streak tracking
-- 🔄 Automatic state persistence
-- 📱 Mobile-first responsive design
-- 🚀 One-click GitHub Pages deployment
-- 📈 Google Analytics 4 support
-- 🎨 Clean, modern UI with Bootstrap
-- 🔗 Social sharing with result grids
-- 📊 Stats comparison system
+---
 
-## Quick Start
+## ✨ Features
 
-1. Click "Use this template" to create your repository
-2. Enable GitHub Pages:
-   - Go to repository Settings > Pages
-   - Under "Build and deployment", select "GitHub Actions" as the source
-3. Configure analytics and sharing:
-   - Copy `.env.example` to `.env`
-   - Add your Google Analytics 4 ID
-   - Add your game preview image at `/public/game-preview.png`
-4. Your game will be live at `https://yourusername.github.io/your-repo-name`
+| Feature | Description |
+|---------|-------------|
+| 🎯 **Daily Puzzles** | Deterministic puzzle numbering with seeded randomization |
+| 🔥 **Streak Tracking** | Consecutive day detection with automatic streak management |
+| 📤 **Social Sharing** | Emoji grid sharing with clipboard + native share API |
+| 🌙 **Dark Mode** | System preference detection with manual toggle |
+| ⏱️ **Countdown Timer** | "Next puzzle in HH:MM:SS" with auto-refresh at midnight |
+| 📱 **PWA Ready** | Installable app with offline support via service worker |
+| 🚀 **One-Click Deploy** | GitHub Pages deployment via Actions |
+| 📊 **Analytics** | Google Analytics 4 integration scaffold |
+| 🛡️ **Error Boundary** | Graceful error handling with recovery options |
+| 🔔 **Toast Notifications** | Visual feedback for share, errors, and game events |
+| ♿ **Accessible** | WCAG AA compliant: ARIA labels, keyboard nav, reduced motion |
+| 🎨 **Animations** | Micro-interactions, entrance animations, and visual polish |
 
-## Customization
+## 🚀 Quick Start
 
-Look for `TODO` comments in these files:
+### 1. Use this template
 
-### Required Changes
-1. `src/pages/Play.tsx`
-   - Replace placeholder with your game logic
-   - Customize completion state display
+Click **"Use this template"** on GitHub, or:
 
-2. `src/pages/Home.tsx`
-   - Update game title and introduction
-   - Customize welcome message
-
-3. `src/types/GameState.ts`
-   - Add game-specific state properties
-   - Add game-specific settings
-
-### Optional Changes
-1. `public/game-icon.svg`
-   - Replace with your game icon
-
-2. `src/styles/global.css`
-   - Customize colors and theme
-   - Add game-specific styles
-
-3. `src/components/InfoModal.tsx`
-   - Update game instructions
-   - Add game features list
-
-## Built-in Features
-
-### State Management
-```typescript
-const { gameState, updateGameState } = useGameState();
-
-// Update game state
-updateGameState({
-  score: newScore,
-  todayCompleted: true,
-});
+```bash
+git clone https://github.com/joshhamburger/react-game-base.git my-game
+cd my-game
+npm install
+npm run dev
 ```
 
-### Daily Puzzles
-- Automatically generates puzzle number from date
-- Tracks completion status
-- Prevents replaying completed puzzles
-- Shows stats after completion
+### 2. Configure your game
 
-### Theme Support
-```typescript
-const { theme, toggleTheme } = useTheme();
-```
+Edit `src/game.config.ts`:
 
-### Result Sharing
-```typescript
-// Share results with native share API or clipboard fallback
-const shareText = generateShareText({
-  title: 'My Game',
-  dayNumber: puzzleNumber,
-  streak: 5,
-  stats: gameStats
-});
-await shareResults(shareText);
-```
-
-### Stats Tracking
-- Games played
-- Win rate
-- Current streak
-- Best streak
-- Daily completion status
-
-### Analytics Integration
-1. Set up Google Analytics:
-   ```env
-   # .env
-   VITE_GA_ID=G-XXXXXXXXXX
-   ```
-
-2. Track custom events:
-   ```typescript
-   gtag('event', 'puzzle_complete', {
-     puzzle_number: puzzleNumber,
-     streak: streak
-   });
-   ```
-
-### Social Media Integration
-- Open Graph meta tags for rich previews
-- Twitter card support
-- Customizable share images
-- Automatic puzzle numbering
-
-## Game Development Tips
-
-### State Persistence
-All game state is automatically saved to localStorage. Common state properties:
-- `todayCompleted`: Whether today's puzzle is completed
-- `streak`: Daily visit streak
-- `lastPlayed`: Last played timestamp
-- `gamesPlayed`: Total games completed
-- `winRate`: Player's win rate
-
-### Adding Custom Features
-
-1. **Daily Puzzles**
-```typescript
-const getTodaysPuzzle = () => {
-  const today = new Date();
-  const puzzleIndex = Math.floor(today.getTime() / (24 * 60 * 60 * 1000));
-  return puzzles[puzzleIndex % puzzles.length];
+```ts
+export const gameConfig = {
+  name: 'My Daily Game',
+  description: 'A new puzzle every day!',
+  author: 'Your Name',
+  // ... features, theme, analytics
 };
 ```
 
-2. **Progress Saving**
-```typescript
-updateGameState({
-  todayCompleted: true,
-  gamesPlayed: gamesPlayed + 1,
-  winRate: calculateWinRate(),
-});
-```
+### 3. Build your game
 
-3. **Statistics**
-```typescript
-updateGameState({
-  gamesPlayed: gameState.gamesPlayed + 1,
-  winRate: (gamesPlayed - 1) / gamesPlayed,
-  maxStreak: Math.max(maxStreak, streak),
-});
-```
+Replace the example in `src/game/GameBoard.tsx`:
 
-### Common Game Patterns
-
-1. **Daily Reset**
-```typescript
-const isNewDay = () => {
-  const lastPlayed = new Date(gameState.lastPlayed);
-  const now = new Date();
-  return !isSameDay(lastPlayed, now);
+```tsx
+export const GameBoard = ({ puzzleNumber, seed, onComplete, onScore }: GameBoardProps) => {
+  // Your game logic here!
+  return <div>Build something awesome ✨</div>;
 };
 ```
 
-2. **Share Results**
-```typescript
-const handleShare = async () => {
-  const text = generateShareText({
-    title: 'Game Title',
-    dayNumber: puzzleNumber,
-    streak,
-    stats: gameStats
-  });
-  await shareResults(text);
+### 4. Deploy
+
+Push to GitHub and enable GitHub Pages — your game deploys automatically.
+
+## 📁 Project Structure
+
+```
+src/
+  game.config.ts         ← Configure your game here
+  game/                  ← YOUR code goes here
+    GameBoard.tsx         ← Your main game component
+    gameLogic.ts          ← Puzzle generation & validation
+    types.ts              ← Your game-specific types
+  template/              ← Framework code (don't edit)
+    components/           ← UI components
+    context/              ← State management
+    hooks/                ← Custom hooks
+    utils/                ← Utility functions
+    styles/               ← Global styles
+    types/                ← Template types
+  pages/
+    Home.tsx              ← Home page (light customization)
+    Play.tsx              ← Game page (wraps your GameBoard)
+```
+
+**The rule is simple:** Put your code in `src/game/`, configure in `game.config.ts`, and don't touch `src/template/`.
+
+## 🎮 GameBoard API
+
+Your `GameBoard` component receives these props from the template:
+
+| Prop | Type | Description |
+|------|------|-------------|
+| `puzzleNumber` | `number` | Today's unique puzzle number |
+| `seed` | `number` | Deterministic seed for today's puzzle |
+| `onComplete` | `(won: boolean) => void` | Call when the player finishes |
+| `onScore` | `(score: number) => void` | Call to update the player's score |
+
+## ⚙️ Configuration
+
+All configuration lives in `src/game.config.ts`:
+
+```ts
+export const gameConfig = {
+  // Identity
+  name: 'My Daily Game',
+  description: 'A new puzzle every day!',
+  author: 'Your Name',
+  version: '1.0.0',
+
+  // Appearance
+  primaryColor: '#4A90E2',
+  fontFamily: "'Outfit', sans-serif",
+
+  // Feature flags
+  features: {
+    streaks: true,
+    sharing: true,
+    statsGrid: true,
+    countdown: true,
+    darkMode: true,
+    analytics: true,
+  },
+
+  // Share format
+  shareTemplate: '{name} #{dayNumber}\n{grid}\nStreak: {streak} 🔥',
 };
 ```
 
-## Common Issues
+## 🧪 Testing
 
-1. **GitHub Pages 404**: Make sure GitHub Pages is enabled and set to deploy from GitHub Actions
-2. **State Reset**: The reset functionality clears ALL game progress
-3. **Mobile Testing**: Test touch interactions thoroughly
-4. **Analytics Not Working**: Verify your GA4 ID in `.env` file
-5. **Share Not Working**: Some browsers restrict clipboard access to HTTPS
+```bash
+npm test              # Run tests in watch mode
+npm run test:coverage # Run tests with coverage report
+```
 
-## License
+Tests use [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
 
-MIT License - feel free to use this template for any purpose.
+## 🛠️ Tech Stack
+
+- **React 18** — UI framework
+- **TypeScript 5** — Type safety
+- **Vite 5** — Build tool & dev server
+- **Bootstrap 5** — UI components
+- **React Router 6** — Client-side routing
+- **Vitest** — Testing framework
+- **vite-plugin-pwa** — Progressive Web App support
+
+## 📄 License
+
+MIT © [Joshua Hamburger](https://github.com/joshhamburger)

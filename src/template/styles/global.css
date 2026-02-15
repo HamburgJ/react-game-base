@@ -1,0 +1,555 @@
+/* Global styles */
+:root {
+  --primary-color: #4A90E2;
+  --text-primary: #2C3E50;
+  --text-secondary: #95A5A6;
+  --bg-light: #FFFFFF;
+  --bg-dark: #1A1A1A;
+  --font-game: 'Outfit', sans-serif;
+}
+
+[data-bs-theme='dark'] {
+  --text-primary: #ECF0F1;
+  --text-secondary: #BDC3C7;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-game);
+  background-color: var(--bg-light);
+  color: var(--text-primary);
+}
+
+[data-bs-theme='dark'] body {
+  background-color: var(--bg-dark);
+}
+
+/* Navigation styles */
+.navbar {
+  background-color: transparent;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.nav-icons .nav-link {
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.nav-icons .nav-link:hover {
+  color: var(--primary-color);
+  transform: translateY(-2px) scale(1.1);
+}
+
+/* Game title styles */
+.game-title {
+  font-family: var(--font-game);
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0;
+  text-decoration: none;
+}
+
+.game-title:hover {
+  color: var(--primary-color);
+}
+
+/* Game container styles */
+.game-container {
+  min-height: 60vh;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-light);
+}
+
+[data-bs-theme='dark'] .game-container {
+  background-color: var(--bg-dark);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Stats display */
+.stats-display {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Button styles */
+.btn-game {
+  font-family: var(--font-game);
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-game:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.btn-game:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
+}
+
+/* Modal styles */
+.modal-game .modal-content {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal-game .modal-header {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.modal-game .modal-footer {
+  border-top: none;
+  padding-top: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .game-title {
+    font-size: 1.75rem;
+  }
+  
+  .game-container {
+    min-height: 70vh;
+  }
+
+  .nav-icons .nav-link {
+    padding: 0.35rem;
+  }
+}
+
+/* Theme transitions — only on elements that need them */
+body,
+.navbar,
+.game-container,
+.home-card,
+.modal-game .modal-content,
+.card,
+.nav-icons .nav-link,
+.stats-display,
+.stat-value,
+.stat-label,
+.btn-game {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+  .card, .modal-content {
+    border-width: 2px;
+  }
+  
+  .btn {
+    border-width: 2px;
+  }
+}
+
+/* Stats grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+/* Home card styles */
+.home-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-light);
+}
+
+[data-bs-theme='dark'] .home-card {
+  background-color: var(--bg-dark);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Game content */
+.game-content {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Completed state */
+.completed-state {
+  padding: 2rem 1rem;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Countdown Timer */
+.countdown-timer {
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.countdown-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.countdown-value {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace, var(--font-game);
+  color: var(--primary-color);
+  letter-spacing: 0.1em;
+}
+
+/* Toast Notifications */
+.toast-container {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.toast-item {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-family: var(--font-game);
+  font-weight: 500;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  animation: toastSlideIn 0.3s ease-out;
+  min-width: 200px;
+  max-width: 90vw;
+}
+
+.toast-success {
+  background-color: #27AE60;
+  color: white;
+}
+
+.toast-error {
+  background-color: #EB5757;
+  color: white;
+}
+
+.toast-info {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.toast-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.toast-message {
+  flex: 1;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Error Boundary */
+.error-boundary {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.error-boundary-content {
+  text-align: center;
+  max-width: 400px;
+}
+
+.error-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.error-boundary-content h2 {
+  font-family: var(--font-game);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.error-message {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.error-details {
+  text-align: left;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+[data-bs-theme='dark'] .error-details {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.error-details pre {
+  margin: 0.5rem 0 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 0.8rem;
+  color: #EB5757;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Loading Spinner */
+.loading-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--text-secondary);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.loading-text {
+  color: var(--text-secondary);
+  font-family: var(--font-game);
+  font-size: 0.9rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   ANIMATIONS & MICRO-INTERACTIONS
+   ============================================ */
+
+/* Card entrance animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-card,
+.game-container {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* Theme toggle rotation */
+.theme-toggle-icon {
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.theme-toggle-icon.rotating {
+  transform: rotate(180deg);
+}
+
+/* Stats counter pop-in */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  70% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.stat-item {
+  animation: popIn 0.4s ease-out both;
+}
+
+.stat-item:nth-child(1) { animation-delay: 0.1s; }
+.stat-item:nth-child(2) { animation-delay: 0.2s; }
+.stat-item:nth-child(3) { animation-delay: 0.3s; }
+.stat-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Streak celebration pulse */
+@keyframes streakPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.streak-highlight {
+  display: inline-block;
+  color: var(--primary-color);
+  font-weight: 700;
+  animation: streakPulse 0.6s ease-in-out 2;
+}
+
+/* Completed state entrance */
+.completed-state {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Page title entrance */
+.game-title {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+/* Countdown timer pulse on last 10 seconds */
+.countdown-urgent .countdown-value {
+  animation: streakPulse 1s ease-in-out infinite;
+  color: #EB5757;
+}
+
+/* Modal entrance */
+.modal-game .modal-content {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+/* ============================================
+   VISUAL POLISH
+   ============================================ */
+
+/* Subtle background pattern */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 1px 1px, var(--text-secondary) 0.5px, transparent 0);
+  background-size: 40px 40px;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better focus visible styles */
+:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* ============================================
+   TOUCH TARGETS — minimum 44x44px for all interactive elements
+   ============================================ */
+.nav-icons .nav-link {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-game {
+  min-height: 44px;
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
