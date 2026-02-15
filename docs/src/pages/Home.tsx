@@ -114,7 +114,7 @@ const Home: React.FC = () => {
             <div className="brutalist-card" style={{ transform: 'rotate(1.5deg)' }}>
               <div style={{ fontSize: '3rem', marginBottom: 'var(--space-2)' }}>🚀</div>
               <h3>Turbo Deploy</h3>
-              <p>Push to main -> GitHub Actions -> Live. Zero config deployment pipeline ready to go.</p>
+              <p>Push to main &rarr; GitHub Actions &rarr; Live. Zero config deployment pipeline ready to go.</p>
             </div>
           
           </div>

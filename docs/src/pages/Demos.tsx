@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Outlet, useLocation, Link } from 'react-router-dom';
+import { Outlet, useLocation, Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 
 const Demos: React.FC = () => {
