@@ -1,0 +1,128 @@
+/* ============================================
+   CHROMATIC THEME — "The Painter"
+   Warm coral/gold, soft and airy, rounded shapes.
+   Inspired by: watercolor palettes, paint swatches, art studios.
+   ============================================ */
+
+:root {
+  --primary-color: #e76f51;
+  --primary-light: #f4a261;
+  --primary-dark: #c1440e;
+  --text-primary: #264653;
+  --text-secondary: #6b8f8d;
+  --bg-light: #fdf8f4;
+  --bg-dark: #1a1410;
+  --font-game: 'Outfit', sans-serif;
+}
+
+[data-bs-theme='dark'] {
+  --text-primary: #e9ecef;
+  --text-secondary: #8eaba9;
+  --bg-dark: #141210;
+}
+
+/* Override body background */
+body {
+  background-color: var(--bg-light);
+}
+
+body::before {
+  /* Soft scattered dots like paint splatter */
+  background-image: 
+    radial-gradient(circle at 2px 2px, var(--primary-light) 1px, transparent 0);
+  background-size: 50px 50px;
+  opacity: 0.08;
+}
+
+[data-bs-theme='dark'] body {
+  background-color: var(--bg-dark);
+}
+
+/* Game title: warm, rounded feel */
+.game-title {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 2.75rem;
+}
+
+/* Buttons: warm gradient with generous rounding */
+.btn-primary,
+.btn-game {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%) !important;
+  border: none !important;
+  font-weight: 700;
+  border-radius: 24px !important;
+  padding: 0.75rem 2.5rem !important;
+}
+
+.btn-primary:hover,
+.btn-game:hover {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%) !important;
+  box-shadow: 0 6px 24px rgba(231, 111, 81, 0.3) !important;
+}
+
+/* Cards: warm, soft, very rounded */
+.home-card,
+.game-container {
+  border: 2px solid rgba(231, 111, 81, 0.15) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 32px rgba(231, 111, 81, 0.08) !important;
+  background: var(--bg-light) !important;
+}
+
+[data-bs-theme='dark'] .home-card,
+[data-bs-theme='dark'] .game-container {
+  background: var(--bg-dark) !important;
+  border-color: rgba(231, 111, 81, 0.2) !important;
+}
+
+/* Stats values: coral with paint-like weight */
+.stat-value {
+  color: var(--primary-color) !important;
+  font-weight: 800;
+}
+
+/* Color circles: bigger shadows for paint-swatch feel */
+.chromatic-board div[style*="border-radius: 50%"] {
+  border: 3px solid var(--text-primary) !important;
+}
+
+/* Sliders: warm accent colors */
+.chromatic-board input[type="range"] {
+  height: 8px;
+  border-radius: 4px;
+  outline: none;
+}
+
+.chromatic-board label {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--primary-light);
+  color: white;
+}
+
+/* Countdown timer */
+.countdown-value {
+  color: var(--primary-color) !important;
+}
+
+/* Nav link hover */
+.nav-icons .nav-link:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Override border-radius on all interactive elements for softness */
+.modal-game .modal-content {
+  border-radius: 20px !important;
+}
+
+.toast-item {
+  border-radius: 20px !important;
+}

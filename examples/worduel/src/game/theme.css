@@ -1,0 +1,105 @@
+/* ============================================
+   WORDUEL THEME — "The Scholar"
+   Deep greens, warm cream, tight letterbox feel.
+   Inspired by: chalkboards, library lamps, felt tables.
+   ============================================ */
+
+:root {
+  --primary-color: #2d6a4f;
+  --primary-light: #52b788;
+  --primary-dark: #1b4332;
+  --text-primary: #1b1b1b;
+  --text-secondary: #6b705c;
+  --bg-light: #fefae0;
+  --bg-dark: #1b2421;
+  --accent-correct: #40916c;
+  --accent-present: #dda15e;
+  --accent-absent: #6c757d;
+  --font-game: 'Outfit', sans-serif;
+}
+
+[data-bs-theme='dark'] {
+  --text-primary: #e9edc9;
+  --text-secondary: #a4ac86;
+  --bg-dark: #0d1b15;
+}
+
+/* Override body background */
+body {
+  background-color: var(--bg-light);
+}
+
+body::before {
+  /* Subtle crosshatch instead of dots */
+  background-image: 
+    linear-gradient(45deg, var(--text-secondary) 0.5px, transparent 0.5px),
+    linear-gradient(-45deg, var(--text-secondary) 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
+  opacity: 0.04;
+}
+
+[data-bs-theme='dark'] body {
+  background-color: var(--bg-dark);
+}
+
+/* Game title: heavy, tracked out */
+.game-title {
+  color: var(--primary-color);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2.75rem;
+}
+
+/* Buttons: solid green with sharp feel */
+.btn-primary,
+.btn-game {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-dark) !important;
+  border-width: 2px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover,
+.btn-game:hover {
+  background-color: var(--primary-dark) !important;
+  border-color: var(--primary-dark) !important;
+}
+
+/* Cards: cream with green accent border */
+.home-card,
+.game-container {
+  border: 2px solid var(--primary-color) !important;
+  border-radius: 8px !important;
+  box-shadow: 4px 4px 0px var(--primary-dark) !important;
+}
+
+/* Stats: green values */
+.stat-value {
+  color: var(--primary-color) !important;
+  font-weight: 800;
+}
+
+/* Word grid tile overrides */
+.worduel-board div[style*="aspect-ratio"] {
+  border-radius: 2px;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--primary-light);
+  color: white;
+}
+
+/* Countdown timer */
+.countdown-value {
+  color: var(--primary-color) !important;
+}
+
+/* Nav link hover */
+.nav-icons .nav-link:hover {
+  color: var(--primary-color) !important;
+}

@@ -1,0 +1,118 @@
+/* ============================================
+   NUMBRELLA THEME — "The Calculator"
+   Deep purple, precision, monospace numbers.
+   Inspired by: scientific calculators, graph paper, neon readouts.
+   ============================================ */
+
+:root {
+  --primary-color: #7b42ff;
+  --primary-light: #a78bfa;
+  --primary-dark: #5b21b6;
+  --text-primary: #1e1b2e;
+  --text-secondary: #6b6887;
+  --bg-light: #f5f3ff;
+  --bg-dark: #13111c;
+  --font-game: 'Outfit', sans-serif;
+}
+
+[data-bs-theme='dark'] {
+  --text-primary: #e2e0f0;
+  --text-secondary: #9b97b0;
+  --bg-dark: #0c0a14;
+}
+
+/* Override body background */
+body {
+  background-color: var(--bg-light);
+}
+
+body::before {
+  /* Graph paper grid */
+  background-image: 
+    linear-gradient(var(--primary-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--primary-light) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.06;
+}
+
+[data-bs-theme='dark'] body {
+  background-color: var(--bg-dark);
+}
+
+/* Game title: bold purple with slight glow */
+.game-title {
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 2.75rem;
+  text-shadow: 0 0 30px rgba(123, 66, 255, 0.15);
+}
+
+/* Buttons: gradient purple */
+.btn-primary,
+.btn-game {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%) !important;
+  border: none !important;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border-radius: 8px;
+}
+
+.btn-primary:hover,
+.btn-game:hover {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%) !important;
+  box-shadow: 0 4px 20px rgba(123, 66, 255, 0.35) !important;
+}
+
+/* Cards: subtle purple border with glow shadow */
+.home-card,
+.game-container {
+  border: 1px solid rgba(123, 66, 255, 0.2) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 24px rgba(123, 66, 255, 0.08) !important;
+}
+
+/* Stats values: purple + monospace for numbers */
+.stat-value {
+  color: var(--primary-color) !important;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-weight: 800;
+  font-size: 1.75rem !important;
+}
+
+/* Target number display */
+.target-display {
+  font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+  color: var(--primary-color) !important;
+  text-shadow: 0 0 20px rgba(123, 66, 255, 0.2);
+}
+
+/* Calculator-style controls */
+.numbrella-board .btn-game {
+  font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+  font-size: 1.25rem;
+  min-height: 50px;
+  border-radius: 6px;
+}
+
+/* Expression display */
+.expression-display {
+  font-family: 'JetBrains Mono', 'Courier New', monospace !important;
+  border-color: rgba(123, 66, 255, 0.3) !important;
+  background: rgba(123, 66, 255, 0.03);
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--primary-light);
+  color: white;
+}
+
+/* Countdown timer */
+.countdown-value {
+  color: var(--primary-color) !important;
+}
+
+/* Nav link hover */
+.nav-icons .nav-link:hover {
+  color: var(--primary-color) !important;
+}

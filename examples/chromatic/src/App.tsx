@@ -3,6 +3,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './template/styles/global.css';
+import './game/theme.css';
 
 import { ErrorBoundary } from './template/components/ErrorBoundary';
 import { Navigation } from './template/components/Navigation';
