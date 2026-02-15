@@ -1,56 +1,61 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const WorduelDemo: React.FC = () => {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    if (iframeRef.current) {
+      iframeRef.current.focus();
+    }
+  }, []);
+
   return (
-    <div style={{ position: 'relative' }}>
-      {/* Themed header bar */}
-      <div style={{
-        background: '#2d6a4f',
-        padding: '16px 24px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        borderBottom: '3px solid #1b4332'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '1.5rem' }}>📝</span>
-          <div>
-            <h3 style={{ 
-              margin: 0, 
-              color: 'white', 
-              fontFamily: '"Courier New", monospace',
-              fontSize: '1.25rem',
-              letterSpacing: '0.1em'
-            }}>WORDUEL</h3>
-            <p style={{ margin: 0, color: 'rgba(255,255,255,0.7)', fontSize: '0.75rem', fontFamily: 'monospace' }}>
-              DAILY WORD PUZZLE
-            </p>
+    <div className="container" style={{ maxWidth: '600px', padding: 'var(--space-4) 0' }}>
+      <div className="card-base" style={{ overflow: 'hidden' }}>
+        {/* Simple Studio Header */}
+        <div style={{ 
+          background: 'var(--bg-surface)', 
+          padding: 'var(--space-3)', 
+          borderBottom: 'var(--border-width) solid var(--border-color)',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <h2 style={{ fontSize: '1.25rem', margin: 0 }}>WORDUEL</h2>
+          <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--fg-dim)' }}>
+            DAILY WORD GAME
           </div>
         </div>
-        <div style={{ display: 'flex', gap: '8px' }}>
-          {['W', 'O', 'R', 'D', 'S'].map((letter, i) => (
-            <span key={i} style={{
-              width: '28px',
-              height: '28px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: i < 3 ? '#52b788' : 'rgba(255,255,255,0.2)',
-              border: '2px solid rgba(255,255,255,0.3)',
-              color: 'white',
-              fontWeight: 'bold',
-              fontSize: '0.75rem',
-              fontFamily: 'monospace'
-            }}>{letter}</span>
-          ))}
+        
+        {/* Game Container */}
+        <div style={{ 
+          position: 'relative', 
+          width: '100%', 
+          height: '700px',
+          background: '#f8f9fa' // Neutral backing
+        }}>
+          <iframe 
+            ref={iframeRef}
+            src="./demos/worduel/" 
+            title="Worduel Game Demo"
+            style={{ 
+              width: '100%', 
+              height: '100%', 
+              border: 'none',
+              display: 'block'
+            }}
+          />
         </div>
       </div>
       
-      <iframe 
-        src="/react-game-base/demos/worduel/index.html" 
-        title="Worduel Demo" 
-        style={{ width: '100%', height: '700px', border: 'none', display: 'block' }} 
-      />
+      <div style={{ 
+        textAlign: 'center', 
+        marginTop: 'var(--space-4)',
+        fontSize: '0.875rem',
+        color: 'var(--fg-dim)'
+      }}>
+        <a href="./demos/worduel/" target="_blank" style={{ color: 'var(--accent-primary)' }}>Open in new tab ↗</a>
+      </div>
     </div>
   );
 };

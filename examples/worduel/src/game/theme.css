@@ -1,142 +1,160 @@
 /* ============================================
-   WORDUEL THEME — "The Daily Gazette"
-   A classic newspaper crossword aesthetic.
-   Serif fonts, ink black, paper texture.
+   WORDUEL THEME — "The Modernist"
+   High contrast, Swiss Style, Helvetica/Inter.
+   clean white, bold black text, stark functional colors.
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+/* Import a clean geometric sans-serif */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap');
 
 :root {
-  /* Newspaper Palette */
-  --ink-black: #121212;
-  --paper-white: #fdfbf7;
-  --paper-gray: #e5e5e0;
-  --news-gray: #787c7e;
+  /* Palette - Stark & Swiss */
+  --modern-white: #ffffff;
+  --modern-offwhite: #f3f4f6;
+  --modern-black: #000000;
+  --modern-gray: #e5e7eb;
   
-  /* Game Status Colors - Muted Ink Styles */
-  --color-correct: #538d4e;  /* Classic Green */
-  --color-present: #b59f3b;  /* Gold/Mustard */
-  --color-absent:  #787c7e;  /* Grey */
+  /* Status Colors - High Visibility */
+  --status-correct: #16a34a; /* Vibrant Green */
+  --status-present: #ca8a04; /* Deep Yellow/Gold */
+  --status-absent:  #9ca3af; /* Neutral Gray */
   
-  /* Fonts */
-  --font-headline: 'Playfair Display', "Times New Roman", serif;
-  --font-body: 'Lora', Georgia, serif;
+  --font-swiss: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Shadows - Subtle Lift */
+  --shadow-key: 0 1px 2px rgba(0,0,0,0.1);
 }
 
+/* Force Light Mode / Normalize Background */
 body {
-  background-color: var(--paper-white);
-  color: var(--ink-black);
-  font-family: var(--font-body);
+  background-color: var(--modern-white) !important;
+  color: var(--modern-black) !important;
+  font-family: var(--font-swiss) !important;
 }
 
-/* Texture overlay for paper feel */
+/* Ensure global dark mode doesn't break us */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--modern-white) !important;
+    color: var(--modern-black) !important;
+  }
+}
+[data-bs-theme='dark'] body {
+  background-color: var(--modern-white) !important;
+  color: var(--modern-black) !important;
+}
+
+/* No texture, just clean */
 body::before {
-  content: "";
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-  opacity: 0.4;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  z-index: -1;
+  display: none;
 }
 
 /* Typography Overrides */
 h1, h2, h3, .game-title {
-  font-family: var(--font-headline) !important;
+  font-family: var(--font-swiss) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.04em !important;
   text-transform: uppercase;
-  letter-spacing: -0.02em;
 }
 
 .game-title {
-  font-size: 3.5rem;
-  border-bottom: 3px double var(--ink-black);
-  border-top: 1px solid var(--ink-black);
-  padding: 0.5rem 0;
+  font-size: 3rem;
   margin-bottom: 2rem;
-  line-height: 1;
+  border: none;
+  /* Minimalist divider */
 }
 
-/* Button Styling - "Editorial" */
+/* Buttons: Minimalist & Functional */
 .btn {
-  font-family: var(--font-headline);
-  border-radius: 0 !important; /* Sharp corners */
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 700;
+  font-family: var(--font-swiss);
+  border-radius: 6px !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   transition: all 0.2s ease;
+  text-transform: none; /* Friendly */
 }
 
 .btn-primary {
-  background-color: var(--ink-black) !important;
-  color: var(--paper-white) !important;
-  border: 1px solid var(--ink-black) !important;
+  background-color: var(--modern-black) !important;
+  color: var(--modern-white) !important;
+  border: 1px solid var(--modern-black) !important;
 }
 
 .btn-primary:hover {
-  background-color: transparent !important;
-  color: var(--ink-black) !important;
+  background-color: #333 !important;
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background-color: transparent !important;
-  color: var(--ink-black) !important;
-  border: 1px solid var(--ink-black) !important;
+  background-color: var(--modern-offwhite) !important;
+  color: var(--modern-black) !important;
+  border: 1px solid var(--modern-gray) !important;
 }
 
-/* Modal/Card Styling */
+.btn-secondary:hover {
+  background-color: #e5e5e5 !important;
+}
+
+/* Modals / Cards */
 .modal-content, .card {
-  background-color: var(--paper-white) !important;
-  border: 1px solid var(--ink-black) !important;
-  border-radius: 0 !important;
-  box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+  background-color: var(--modern-white) !important;
+  border: 1px solid var(--modern-gray) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  color: var(--modern-black) !important;
 }
 
 .modal-header {
-  border-bottom: 1px solid var(--ink-black) !important;
+  border-bottom: 1px solid var(--modern-gray) !important;
 }
 
 .modal-footer {
-  border-top: 1px solid var(--ink-black) !important;
+  border-top: 1px solid var(--modern-gray) !important;
 }
 
-/* Game Board Specifics */
-/* This targets the letter tiles if they share generic classes, 
-   but we might need to be specific if the component structure uses inline styles.
-   Assuming standard bootstrap or custom classes from the template. */
-
-/* Tile Base */
+/* Game Board - Clean Tiles */
 .tile-empty {
-  border: 2px solid var(--paper-gray) !important;
+  border: 2px solid var(--modern-gray) !important;
   background: transparent;
 }
 
+/* Active Tile */
+.row-active .tile-empty[data-state="active"] {
+  border-color: var(--modern-black) !important;
+  animation: pulse 1s infinite;
+}
+
 .tile-filled {
-  border: 2px solid var(--ink-black) !important;
-  color: var(--ink-black);
-  animation: popIn 0.1s;
+  border: 2px solid var(--modern-black) !important;
+  color: var(--modern-black);
+  background: white;
+  font-weight: 700;
 }
 
 .tile-correct {
-  background-color: var(--color-correct) !important;
-  border-color: var(--color-correct) !important;
+  background-color: var(--status-correct) !important;
+  border-color: var(--status-correct) !important;
   color: white !important;
 }
 
 .tile-present {
-  background-color: var(--color-present) !important;
-  border-color: var(--color-present) !important;
+  background-color: var(--status-present) !important;
+  border-color: var(--status-present) !important;
   color: white !important;
 }
 
 .tile-absent {
-  background-color: var(--color-absent) !important;
-  border-color: var(--color-absent) !important;
+  background-color: var(--status-absent) !important;
+  border-color: var(--status-absent) !important;
   color: white !important;
 }
 
 /* Keyboard overrides */
 .keyboard-key {
   border-radius: 4px !important;
-  font-family: var(--font-body);
-  font-weight: bold;
+  font-family: var(--font-swiss);
+  font-weight: 600;
+  box-shadow: var(--shadow-key);
+  background-color: var(--modern-gray); /* Default key color */
+  color: var(--modern-black);
 }

@@ -96,17 +96,29 @@ const Row: React.FC<{ word: string; states?: LetterState[]; current?: boolean }>
   const displayLetters = [...letters, ...Array(WORD_LENGTH - letters.length).fill('')];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '5px' }}>
+    <div className={`word-row ${current ? 'row-active' : ''}`} style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '5px' }}>
       {displayLetters.map((letter, i) => {
-        const state = states ? states[i] : 'empty';
-        const bg = state === 'correct' ? '#538D4E' : 
-                   state === 'present' ? '#B59F3B' : 
-                   state === 'absent' ? '#3A3A3C' : 'transparent';
-        const border = current && letter ? '2px solid #888' : '2px solid #333';
-        const color = state !== 'empty' ? 'white' : 'inherit';
+        let className = 'tile-empty';
+        if (states) {
+            const state = states[i];
+            if (state === 'correct') className = 'tile-correct';
+            else if (state === 'present') className = 'tile-present';
+            else if (state === 'absent') className = 'tile-absent';
+        } else if (letter) {
+            className = 'tile-filled';
+        }
+
+        if (current && letter) {
+             // Active typing state handled by tile-filled or specific active attribute if needed
+             // But my CSS uses tile-filled for typed letters
+             className = 'tile-filled';
+        }
+        
+        // Add data-state for animation hooks in CSS
+        const dataState = current && !letter ? 'active' : (states ? states[i] : (letter ? 'filled' : 'empty'));
 
         return (
-          <div key={i} style={{
+          <div key={i} className={`tile ${className}`} data-state={dataState} style={{
             width: '100%',
             aspectRatio: '1',
             display: 'flex',
@@ -114,10 +126,8 @@ const Row: React.FC<{ word: string; states?: LetterState[]; current?: boolean }>
             justifyContent: 'center',
             fontSize: '1.5rem',
             fontWeight: 'bold',
-            textTransform: 'uppercase',
-            backgroundColor: bg,
-            border: state !== 'empty' ? 'none' : border,
-            color
+            textTransform: 'uppercase'
+            /* colors handled by CSS now */
           }}>
             {letter}
           </div>

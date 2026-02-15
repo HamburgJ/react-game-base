@@ -1,66 +1,61 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const NumbrellaDemo: React.FC = () => {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    if (iframeRef.current) {
+      iframeRef.current.focus();
+    }
+  }, []);
+
   return (
-    <div style={{ position: 'relative' }}>
-      {/* Themed header bar */}
-      <div style={{
-        background: '#5a189a',
-        padding: '16px 24px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        borderBottom: '3px solid #3c096c'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '1.5rem' }}>🔢</span>
-          <div>
-            <h3 style={{ 
-              margin: 0, 
-              color: 'white', 
-              fontFamily: '"Courier New", monospace',
-              fontSize: '1.25rem',
-              letterSpacing: '0.1em'
-            }}>NUMBRELLA</h3>
-            <p style={{ margin: 0, color: 'rgba(255,255,255,0.7)', fontSize: '0.75rem', fontFamily: 'monospace' }}>
-              DAILY MATH PUZZLE
-            </p>
+    <div className="container" style={{ maxWidth: '600px', padding: 'var(--space-4) 0' }}>
+      <div className="card-base" style={{ overflow: 'hidden' }}>
+        {/* Simple Studio Header */}
+        <div style={{ 
+          background: 'var(--bg-surface)', 
+          padding: 'var(--space-3)', 
+          borderBottom: 'var(--border-width) solid var(--border-color)',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
+          <h2 style={{ fontSize: '1.25rem', margin: 0 }}>NUMBRELLA</h2>
+          <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--fg-dim)' }}>
+            DAILY MATH GAME
           </div>
         </div>
-        <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
-          {['+', '−', '×', '÷'].map((op, i) => (
-            <span key={i} style={{
-              width: '28px',
-              height: '28px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: 'rgba(255,255,255,0.15)',
-              borderRadius: '50%',
-              color: '#e0aaff',
-              fontWeight: 'bold',
-              fontSize: '0.9rem',
-              fontFamily: 'monospace'
-            }}>{op}</span>
-          ))}
-          <span style={{
-            marginLeft: '4px',
-            padding: '4px 10px',
-            background: '#e0aaff',
-            color: '#3c096c',
-            fontWeight: 'bold',
-            fontSize: '0.75rem',
-            fontFamily: 'monospace',
-            borderRadius: '4px'
-          }}>=&nbsp;?</span>
+        
+        {/* Game Container */}
+        <div style={{ 
+          position: 'relative', 
+          width: '100%', 
+          height: '700px',
+          background: '#f8f9fa'
+        }}>
+          <iframe 
+            ref={iframeRef}
+            src="./demos/numbrella/" 
+            title="Numbrella Game Demo"
+            style={{ 
+              width: '100%', 
+              height: '100%', 
+              border: 'none',
+              display: 'block'
+            }}
+          />
         </div>
       </div>
       
-      <iframe 
-        src="/react-game-base/demos/numbrella/index.html" 
-        title="Numbrella Demo" 
-        style={{ width: '100%', height: '700px', border: 'none', display: 'block' }} 
-      />
+      <div style={{ 
+        textAlign: 'center', 
+        marginTop: 'var(--space-4)',
+        fontSize: '0.875rem',
+        color: 'var(--fg-dim)'
+      }}>
+        <a href="./demos/numbrella/" target="_blank" style={{ color: 'var(--accent-primary)' }}>Open in new tab ↗</a>
+      </div>
     </div>
   );
 };
